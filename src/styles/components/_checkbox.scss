@@ -1,0 +1,13 @@
+.checkbox {
+
+    &__label {
+        vertical-align: middle;
+        color: $primaryDark;
+    }
+
+    &#{&} {
+        svg {
+            fill: $primary;
+        }
+    }
+}
