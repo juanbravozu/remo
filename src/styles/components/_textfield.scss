@@ -1,0 +1,69 @@
+.textfield {
+    &__container {
+        position: relative;
+    }
+
+    &#{&} {
+        margin: 1.5rem auto;
+        width: 100%;
+        font-family: $poppins;
+
+        label, input {
+            font-size: 1.4rem;
+        }
+
+        label {
+            transform: translate(1.4rem, 1.6rem);
+        }
+
+        .MuiInputLabel-shrink {
+            transform: translate(1.4rem, -0.6rem) scale(0.75);
+        }
+
+        .Mui-focused {
+            color: $primaryDark;
+
+            fieldset {
+                border-color: $primary;
+            }
+
+            input {
+                color: $interfaceDark;
+                background-color: rgba($primary, 0.05);
+            }
+        }
+
+        .MuiFormLabel-filled {
+            color: $primaryDark;
+        }
+
+        .MuiFormLabel-filled + div fieldset {
+            border-color: $primary;
+        }
+
+        input {
+            box-sizing: border-box;
+            height: 4.5rem;
+        }
+
+        fieldset {
+            height: 5rem;
+            border-color: $bgDark;
+        }
+
+        div:hover fieldset {
+            border-color: $primary;
+        }
+
+        span {
+            font-size: 1rem;
+        }
+
+        + .textfield__iconEnd {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+}

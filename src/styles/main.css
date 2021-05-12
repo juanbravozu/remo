@@ -1,0 +1,292 @@
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html, body, div, span, object, iframe, figure, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, code, em, img, small, strike, strong, sub, sup, tt, b, u, i, ol, ul, li, fieldset, form, label, table, caption, tbody, tfoot, thead, tr, th, td, main, canvas, embed, footer, header, nav, section, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: none;
+     -moz-text-size-adjust: none;
+      -ms-text-size-adjust: none;
+          text-size-adjust: none;
+}
+
+footer, header, nav, section, main {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+button, a {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.4rem;
+  color: inherit;
+}
+
+h2, .h2 {
+  font-size: 2.4rem;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.underline {
+  position: relative;
+  cursor: pointer;
+}
+
+.underline::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  border-bottom: 1px solid;
+  bottom: 0;
+  right: 0;
+}
+
+.btn.btn {
+  display: block;
+  width: 100%;
+  max-width: 250px;
+  min-height: 40px;
+  padding: 0.5rem 2rem;
+  border-radius: 2rem;
+  font-size: 1.4rem;
+  font-family: "Poppins", sans-serif;
+  text-transform: initial;
+  border: none;
+  cursor: pointer;
+}
+
+.btn.btn--primary {
+  background-color: #A65290;
+  color: #FCF8FB;
+}
+
+.btn.btn--primary:hover {
+  background-color: #752462;
+}
+
+.btn.btn--secondary {
+  background-color: #FEBE9A;
+  color: #752462;
+}
+
+.btn.btn--secondary:hover {
+  background-color: #F6A06F;
+}
+
+.textfield__container {
+  position: relative;
+}
+
+.textfield.textfield {
+  margin: 1.5rem auto;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+}
+
+.textfield.textfield label, .textfield.textfield input {
+  font-size: 1.4rem;
+}
+
+.textfield.textfield label {
+  -webkit-transform: translate(1.4rem, 1.6rem);
+          transform: translate(1.4rem, 1.6rem);
+}
+
+.textfield.textfield .MuiInputLabel-shrink {
+  -webkit-transform: translate(1.4rem, -0.6rem) scale(0.75);
+          transform: translate(1.4rem, -0.6rem) scale(0.75);
+}
+
+.textfield.textfield .Mui-focused {
+  color: #752462;
+}
+
+.textfield.textfield .Mui-focused fieldset {
+  border-color: #A65290;
+}
+
+.textfield.textfield .Mui-focused input {
+  color: #44223C;
+  background-color: rgba(166, 82, 144, 0.05);
+}
+
+.textfield.textfield .MuiFormLabel-filled {
+  color: #752462;
+}
+
+.textfield.textfield .MuiFormLabel-filled + div fieldset {
+  border-color: #A65290;
+}
+
+.textfield.textfield input {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 4.5rem;
+}
+
+.textfield.textfield fieldset {
+  height: 5rem;
+  border-color: #D1C7CF;
+}
+
+.textfield.textfield div:hover fieldset {
+  border-color: #A65290;
+}
+
+.textfield.textfield span {
+  font-size: 1rem;
+}
+
+.textfield.textfield + .textfield__iconEnd {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.checkbox__label {
+  vertical-align: middle;
+  color: #752462;
+}
+
+.checkbox.checkbox svg {
+  fill: #A65290;
+}
+
+.log {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  min-height: 100vh;
+  background-color: #A65290;
+  background-image: url("../assets/log-bg.svg");
+  background-position-x: -20px;
+  background-position-y: -50px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  font-size: 1.4rem;
+}
+
+.log__form {
+  width: 100vw;
+  padding: 2rem;
+  background-color: #FCF8FB;
+  border-radius: 10px 10px 0 0;
+}
+
+.log__form.log__form > * {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.log__logo {
+  width: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+
+.log__logo img {
+  max-width: 17rem;
+}
+
+.log__title, .log__navigate {
+  color: #752462;
+  text-align: center;
+  margin: 2rem auto;
+}
+
+.log__navigate {
+  margin-bottom: 0;
+}
+
+.log__forgotPassword {
+  margin-bottom: 5rem;
+  color: #752462;
+  text-align: end;
+  cursor: pointer;
+}
+
+.log__terms {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.log .btn {
+  margin: 2rem auto;
+}
+
+.App {
+  min-height: 100vh;
+}
+
+.MuiFormLabel-root.MuiFormLabel-root, .MuiInputBase-root.MuiInputBase-root {
+  font-family: inherit;
+}
+
+.MuiSvgIcon-root.MuiSvgIcon-root {
+  font-size: 2rem;
+}
+
+.flex-center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+/*# sourceMappingURL=main.css.map */

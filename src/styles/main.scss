@@ -1,0 +1,29 @@
+$primary: #A65290;
+$primaryDark: #752462;
+$secondary: #FEBE9A;
+$white: #FCF8FB;
+
+@import './abstracts/color';
+@import './base/reset';
+@import './base/typography';
+@import './components/btn';
+@import './components/textfield';
+@import './components/checkbox';
+@import './pages/log';
+
+.App {
+    min-height: 100vh;
+}
+
+.MuiFormLabel-root.MuiFormLabel-root, .MuiInputBase-root.MuiInputBase-root {
+    font-family: inherit;
+}
+
+.MuiSvgIcon-root.MuiSvgIcon-root {
+    font-size: 2rem;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,35 @@
+$poppins: 'Poppins', sans-serif;
+$josefin: 'Josefin Sans', sans-serif;
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: $poppins;
+}
+
+button, a {
+    font-family: $poppins;
+    font-size: 1.4rem;
+    color: inherit;
+}
+
+h2, .h2 {
+    font-size: 2.4rem;
+    font-family: $josefin;
+}
+
+.underline {
+    position: relative;
+    cursor: pointer;
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        border-bottom: 1px solid;
+        bottom: 0;
+        right: 0;
+    }
+}
