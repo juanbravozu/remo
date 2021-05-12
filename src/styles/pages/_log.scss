@@ -17,6 +17,9 @@
         padding: 2rem;
         background-color: $bgLight;
         border-radius: 10px 10px 0 0;
+        animation-name: slideInFromBottom, fadeIn;
+        animation-timing-function: ease-out;
+        animation-duration: 0.5s;
 
         &#{&} > * {
             margin-left: auto;
@@ -27,6 +30,9 @@
     &__logo {
         width: 100%;
         flex: 1 1 auto;
+        animation-name: fadeIn;
+        animation-timing-function: ease-out;
+        animation-duration: 0.5s;
 
         img {
             max-width: 17rem;
@@ -40,10 +46,13 @@
     }
 
     &__navigate {
+        display: block;
         margin-bottom: 0;
     }
 
     &__forgotPassword {
+        display: block;
+        margin-left: auto;
         margin-bottom: 5rem;
         color: $primaryDark;
         text-align: end;

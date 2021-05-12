@@ -1,8 +1,8 @@
 import React, { FC, useRef } from "react";
+import { Link } from 'react-router-dom';
 import { TextField, Button, Checkbox, IconButton } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import logo from '../assets/logo-white.svg';
-import { Link } from "react-router-dom";
 
 const Login:FC = () => {
 
@@ -30,8 +30,8 @@ const Login:FC = () => {
                         {!passwordVisible && <Visibility/>}
                     </IconButton>
                 </div>           
-                <p className="log__forgotPassword">Forgot your password?</p>     
-                <Button variant="contained" className="btn btn--secondary">Log In</Button>
+                <Link to="/forgotPassword" className="log__forgotPassword">Forgot your password?</Link>     
+                <Button variant="contained" className="btn btn--primary">Log In</Button>
 
                 
                 <p className="log__navigate">Don't have an account? <Link to="/signup">Sign Up</Link></p>

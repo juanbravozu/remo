@@ -1,3 +1,29 @@
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes slideInFromBottom {
+  0% {
+    -webkit-transform: translateY(20%);
+            transform: translateY(20%);
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    -webkit-transform: translateY(20%);
+            transform: translateY(20%);
+  }
+}
+
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -224,6 +250,12 @@ h2, .h2 {
   padding: 2rem;
   background-color: #FCF8FB;
   border-radius: 10px 10px 0 0;
+  -webkit-animation-name: slideInFromBottom, fadeIn;
+          animation-name: slideInFromBottom, fadeIn;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
 }
 
 .log__form.log__form > * {
@@ -236,6 +268,12 @@ h2, .h2 {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
+  -webkit-animation-name: fadeIn;
+          animation-name: fadeIn;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
 }
 
 .log__logo img {
@@ -249,10 +287,13 @@ h2, .h2 {
 }
 
 .log__navigate {
+  display: block;
   margin-bottom: 0;
 }
 
 .log__forgotPassword {
+  display: block;
+  margin-left: auto;
   margin-bottom: 5rem;
   color: #752462;
   text-align: end;
