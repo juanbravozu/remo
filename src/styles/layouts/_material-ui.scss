@@ -1,0 +1,36 @@
+.MuiFormLabel-root.MuiFormLabel-root, .MuiInputBase-root.MuiInputBase-root {
+    font-family: inherit;
+}
+
+.MuiSvgIcon-root.MuiSvgIcon-root {
+    font-size: 2rem;
+}
+
+.MuiSnackbar-root{
+    &#{&} {
+        left: 2rem;
+        right: 2rem;
+        bottom: 10rem;
+    }
+
+    .MuiAlert {
+        &-root {
+            width: 100%;
+        }
+
+        &-standardError {
+            background-color: $bgLight;
+            border: 2px $error solid;
+            border-radius: 7px;
+            
+            .MuiAlert-icon {
+                color: $error;
+            }
+        }
+
+        &-message {
+            font-size: 1.4rem;
+            color: inherit;
+        }        
+    }
+}

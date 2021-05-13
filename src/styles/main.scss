@@ -10,18 +10,11 @@ $white: #FCF8FB;
 @import './components/btn';
 @import './components/textfield';
 @import './components/checkbox';
+@import './layouts/material-ui';
 @import './pages/log';
 
 .App {
     min-height: 100vh;
-}
-
-.MuiFormLabel-root.MuiFormLabel-root, .MuiInputBase-root.MuiInputBase-root {
-    font-family: inherit;
-}
-
-.MuiSvgIcon-root.MuiSvgIcon-root {
-    font-size: 2rem;
 }
 
 .flex-center {

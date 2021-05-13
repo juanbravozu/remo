@@ -83,6 +83,10 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 button, a {
   font-family: "Poppins", sans-serif;
   font-size: 1.4rem;
@@ -194,6 +198,7 @@ h2, .h2 {
 .textfield.textfield fieldset {
   height: 5rem;
   border-color: #D1C7CF;
+  border-radius: 7px;
 }
 
 .textfield.textfield div:hover fieldset {
@@ -221,6 +226,39 @@ h2, .h2 {
   fill: #A65290;
 }
 
+.MuiFormLabel-root.MuiFormLabel-root, .MuiInputBase-root.MuiInputBase-root {
+  font-family: inherit;
+}
+
+.MuiSvgIcon-root.MuiSvgIcon-root {
+  font-size: 2rem;
+}
+
+.MuiSnackbar-root.MuiSnackbar-root {
+  left: 2rem;
+  right: 2rem;
+  bottom: 10rem;
+}
+
+.MuiSnackbar-root .MuiAlert-root {
+  width: 100%;
+}
+
+.MuiSnackbar-root .MuiAlert-standardError {
+  background-color: #FCF8FB;
+  border: 2px #CD3737 solid;
+  border-radius: 7px;
+}
+
+.MuiSnackbar-root .MuiAlert-standardError .MuiAlert-icon {
+  color: #CD3737;
+}
+
+.MuiSnackbar-root .MuiAlert-message {
+  font-size: 1.4rem;
+  color: inherit;
+}
+
 .log {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -243,13 +281,14 @@ h2, .h2 {
   background-repeat: no-repeat;
   background-size: contain;
   font-size: 1.4rem;
+  overflow-y: hidden;
 }
 
 .log__form {
   width: 100vw;
   padding: 2rem;
   background-color: #FCF8FB;
-  border-radius: 10px 10px 0 0;
+  border-radius: 20px 20px 0 0;
   -webkit-animation-name: slideInFromBottom, fadeIn;
           animation-name: slideInFromBottom, fadeIn;
   -webkit-animation-timing-function: ease-out;
@@ -312,14 +351,6 @@ h2, .h2 {
 
 .App {
   min-height: 100vh;
-}
-
-.MuiFormLabel-root.MuiFormLabel-root, .MuiInputBase-root.MuiInputBase-root {
-  font-family: inherit;
-}
-
-.MuiSvgIcon-root.MuiSvgIcon-root {
-  font-size: 2rem;
 }
 
 .flex-center {

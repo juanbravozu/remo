@@ -9,6 +9,10 @@ body {
     font-family: $poppins;
 }
 
+a {
+    text-decoration: none;
+}
+
 button, a {
     font-family: $poppins;
     font-size: 1.4rem;
