@@ -1,18 +1,21 @@
 import React, { FC, useRef, useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { TextField, Button, IconButton, Snackbar } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import logo from '../assets/logo-white.svg';
 import { Alert } from "@material-ui/lab";
+import validateEmail from "../utils/emailValidation";
+import { useAuth } from "../contexts/AuthContext";
 
 const Login:FC = () => {
 
     const [passwordVisible, setPasswordVisible ] = React.useState(false);
-
     const emailRef = useRef<HTMLDivElement>(null);
     const passwordRef = useRef<HTMLDivElement>(null);
     const [ error, setError ] = useState('');
     const [ openError, setOpenError ] = useState(false);
+    const { login } = useAuth()!;
+    const history = useHistory();
 
     function toggleVisibility() {setPasswordVisible(currentValue => !currentValue)}
 
@@ -20,6 +23,32 @@ const Login:FC = () => {
         return '' + container.querySelector('input')?.value;
     }
     
+    function handleSubmit(e:Event) {
+        e.preventDefault();
+        const emailValue = getInnerInputValue(emailRef.current!);
+        const passwordValue = getInnerInputValue(passwordRef.current!)
+
+        if(!emailValue && !passwordValue) {
+            setOpenError(true);
+            return setError('All fields need to be filled');
+        }
+
+        if(!validateEmail(getInnerInputValue(emailRef!.current!))) {
+            setOpenError(true);
+            return setError('Email is not valid');
+        }
+
+        login(emailValue, passwordValue)
+        .then(() => {
+            history.push('/');
+        })
+        .catch((error:any) => {
+            setOpenError(true);
+            return setError(error.message);
+        })
+    }
+    
+
     function handleClose() {
         setOpenError(false);
         setError('');

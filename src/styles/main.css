@@ -93,6 +93,11 @@ button, a {
   color: inherit;
 }
 
+h1, .h1 {
+  font-size: 3.6rem;
+  font-family: "Josefin Sans", sans-serif;
+}
+
 h2, .h2 {
   font-size: 2.4rem;
   font-family: "Josefin Sans", sans-serif;
@@ -122,8 +127,12 @@ h2, .h2 {
   font-size: 1.4rem;
   font-family: "Poppins", sans-serif;
   text-transform: initial;
+  text-align: center;
+  line-height: 3rem;
   border: none;
   cursor: pointer;
+  -webkit-transition: background-color 0.3s ease-out;
+  transition: background-color 0.3s ease-out;
 }
 
 .btn.btn--primary {
@@ -304,6 +313,7 @@ h2, .h2 {
 
 .log__logo {
   width: 100%;
+  min-height: 110px;
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;

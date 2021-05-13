@@ -30,6 +30,7 @@
 
     &__logo {
         width: 100%;
+        min-height: 110px;
         flex: 1 1 auto;
         animation-name: fadeIn;
         animation-timing-function: ease-out;

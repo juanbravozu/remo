@@ -8,7 +8,8 @@ import SignUp from './pages/SignUp';
 import './styles/main.css'; 
 import ForgotPassword from './pages/ForgotPassword';
 import { AuthProvider } from './contexts/AuthContext';
-import { Dashboard } from '@material-ui/icons';
+import Dashboard from './pages/Dashboard';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
       <div className="App">
         <Router>
           <Switch>
-            <Route path="/" exact component={Dashboard}/>
+            <PrivateRoute path="/" exact component={Dashboard}/>
 
             <Route path="/login" component={Login}/>
 
