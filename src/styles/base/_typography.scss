@@ -29,6 +29,11 @@ h2, .h2 {
     font-family: $josefin;
 }
 
+p, .body, p.body, button.body {
+    font-size: 1.4rem;
+    font-family: $poppins;
+}
+
 .underline {
     position: relative;
     cursor: pointer;

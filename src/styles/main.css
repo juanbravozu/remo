@@ -103,6 +103,11 @@ h2, .h2 {
   font-family: "Josefin Sans", sans-serif;
 }
 
+p, .body, p.body, button.body {
+  font-size: 1.4rem;
+  font-family: "Poppins", sans-serif;
+}
+
 .underline {
   position: relative;
   cursor: pointer;
@@ -266,6 +271,12 @@ h2, .h2 {
 .MuiSnackbar-root .MuiAlert-message {
   font-size: 1.4rem;
   color: inherit;
+}
+
+.MuiTypography-h6.MuiTypography-h6 {
+  font-size: 2rem;
+  font-family: "Josefin Sans", sans-serif;
+  color: #752462;
 }
 
 .log {

@@ -3,4 +3,11 @@ const validateEmail = (email:string) => {
     return re.test(String(email).toLowerCase());
 }
 
+export function getInnerInputValue(container: HTMLElement, checked?:string) {
+    if(checked === 'checked') {
+        return '' + container.querySelector('input')![checked];
+    }
+    return '' + container.querySelector('input')?.value;
+}
+
 export default validateEmail;
