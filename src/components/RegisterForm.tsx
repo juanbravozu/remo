@@ -5,15 +5,17 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import validateEmail, { getInnerInputValue } from '../utils/emailValidation';
 import { IRegisterInfo } from '../pages/SignUp';
+import { db } from "../utils/firebase";
 
 interface BasicRegisterProps {
     setError: (error:string) => void;
     setOpenError: (openError:boolean) => void;
     setRegisterInfo: Function;
+    registerInfo: IRegisterInfo | undefined;
     setStage: Function;
 }
 
-const RegisterForm:FC<BasicRegisterProps> = ({setError, setOpenError, setRegisterInfo, setStage }: BasicRegisterProps) => {
+const RegisterForm:FC<BasicRegisterProps> = ({setError, setOpenError, setRegisterInfo, setStage, registerInfo }: BasicRegisterProps) => {
 
     function toggleVisibility() {setPasswordVisible(currentValue => !currentValue)}
     const [passwordVisible, setPasswordVisible ] = useState(false);
@@ -72,7 +74,14 @@ const RegisterForm:FC<BasicRegisterProps> = ({setError, setOpenError, setRegiste
                     email: getInnerInputValue(emailRef!.current!),
                     uid: user.user.uid
                 }));
-                setStage(1);
+                db.collection('users').doc(user.user.uid).set({
+                    name: getInnerInputValue(nameRef!.current!),
+                    email: getInnerInputValue(emailRef!.current!),
+                    uid: user.user.uid
+                })
+                .then(() => {
+                    setStage(1);
+                })
             })
             .catch((error:any) => {
                 setLoading(false);

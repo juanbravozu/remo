@@ -23,8 +23,8 @@ const Login:FC = () => {
         return '' + container.querySelector('input')?.value;
     }
     
-    function handleSubmit(e:Event) {
-        e.preventDefault();
+    function handleSubmit(event:any) {
+        event.preventDefault();
         const emailValue = getInnerInputValue(emailRef.current!);
         const passwordValue = getInnerInputValue(passwordRef.current!)
 
@@ -61,7 +61,7 @@ const Login:FC = () => {
                 <img src={logo} alt="Remo"/>
             </div>            
 
-            <form className="log__form">
+            <form className="log__form" onSubmit={handleSubmit}>
                 <h2 className="log__title">Log In</h2>
                 <TextField variant="outlined" ref={emailRef} type="email" id="email" label="Email" className="textfield"></TextField>
                 <div className="textfield__container">
@@ -72,7 +72,7 @@ const Login:FC = () => {
                     </IconButton>
                 </div>           
                 <Link to="/forgotPassword" className="log__forgotPassword">Forgot your password?</Link>     
-                <Button variant="contained" className="btn btn--primary">Log In</Button>
+                <Button variant="contained" className="btn btn--primary" type="submit">Log In</Button>
 
                 
                 <p className="log__navigate">Don't have an account? <Link to="/signup" className="underline">Sign Up</Link></p>

@@ -1,10 +1,11 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import logo from '../assets/logo-white.svg';
 import { useHistory } from "react-router-dom";
-import { useAuth } from '../contexts/AuthContext';
 import RegisterForm from "../components/RegisterForm";
+import { useAuth } from "../contexts/AuthContext";
+import { db } from "../utils/firebase";
 
 
 export interface IRegisterInfo {
@@ -19,14 +20,23 @@ export interface IRegisterInfo {
 
 const SignUp:FC = () => {
 
-    enum Stage { Basic, Sleep, Wake, Productivity, Afirmations };
+    enum Stage { Basic, Introduction, Sleep, Wake, Productivity, Afirmations };
     const [ stage, setStage ] = useState<number>(Stage.Basic);
-    const { signup } = useAuth()!;
     const [ error, setError ] = useState('');
     const [ openError, setOpenError ] = useState(false);
     const [ registerInfo, setRegisterInfo] = useState<IRegisterInfo>();
+    const { currentUser } = useAuth()!;
     const history = useHistory();
 
+    useEffect(() => {
+        if(currentUser) {
+            db.collection('users').doc(currentUser.uid).get()
+            .then(doc => {
+                setRegisterInfo(doc.data() as IRegisterInfo);
+                setStage(Stage.Introduction);
+            });
+        }
+    }, []);
     function handleCloseError() {
         setOpenError(false);
         setError('');
@@ -41,7 +51,7 @@ const SignUp:FC = () => {
                 <img src={logo} alt="Remo"/>
             </div>            
 
-            {(stage === Stage.Basic) && <RegisterForm setError={setError} setOpenError={setOpenError} setRegisterInfo={setRegisterInfo} setStage={setStage}/>}
+            {(stage === Stage.Basic) && <RegisterForm setError={setError} setOpenError={setOpenError} setRegisterInfo={setRegisterInfo} setStage={setStage} registerInfo={registerInfo}/>}
 
             <Snackbar open={openError} autoHideDuration={5000} onClose={handleCloseError}>
                 <Alert onClose={handleCloseError} severity="error">

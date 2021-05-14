@@ -13,13 +13,14 @@ const Dashboard:FC = () => {
 
     db.collection('users').doc(currentUser.uid).get()
     .then(data => {
+        if(!(data.data()!.profile)) return history.push('/signup');
         setUser(data.data() as userData);
     });
 
     function handleLogOut() {
         logout()
         .then(() => {
-            history.push('/login')
+            history.push('/login');
         })
     }
 
