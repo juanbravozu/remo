@@ -2,20 +2,19 @@ import { Button, Checkbox, Dialog, DialogActions, DialogContent, DialogContentTe
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { FC, FormEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
-import validateEmail, { getInnerInputValue } from '../utils/emailValidation';
-import { IRegisterInfo } from '../pages/SignUp';
-import { db } from "../utils/firebase";
+import { useAuth } from "../../contexts/AuthContext";
+import validateEmail, { getInnerInputValue } from '../../utils/emailValidation';
+import { IRegisterInfo } from '../../pages/SignUp';
+import { db } from "../../utils/firebase";
 
 interface BasicRegisterProps {
     setError: (error:string) => void;
     setOpenError: (openError:boolean) => void;
     setRegisterInfo: Function;
-    registerInfo: IRegisterInfo | undefined;
     setStage: Function;
 }
 
-const RegisterForm:FC<BasicRegisterProps> = ({setError, setOpenError, setRegisterInfo, setStage, registerInfo }: BasicRegisterProps) => {
+const RegisterForm:FC<BasicRegisterProps> = ({setError, setOpenError, setRegisterInfo, setStage }: BasicRegisterProps) => {
 
     function toggleVisibility() {setPasswordVisible(currentValue => !currentValue)}
     const [passwordVisible, setPasswordVisible ] = useState(false);

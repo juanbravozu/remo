@@ -69,3 +69,51 @@
         margin: 2rem auto;
     }
 }
+
+.formStep {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10rem 2rem;
+    background-color: $bgLight;
+
+    &__title {
+        color: $primaryDark;
+    }
+
+    &__text {
+        color: $interfaceDark;
+        margin: 2rem auto;
+    }
+
+    &__wrapper {
+        animation-name: slideInFromBottom, fadeIn;
+        animation-timing-function: ease-out;
+        animation-duration: 0.5s;
+    }
+
+    &__header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        height: 4.4rem;
+        box-sizing: content-box;
+    }
+
+    .btn {
+        margin-top: 5rem;
+    }
+}
+
+button.formStep__back {
+    position: absolute;
+    color: $primary;
+    left: 2rem;
+}

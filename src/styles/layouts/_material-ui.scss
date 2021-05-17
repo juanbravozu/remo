@@ -40,3 +40,25 @@
     font-family: $josefin;
     color: $primaryDark;
 }
+
+div.MuiToolbar-root, div.MuiPickersClock-pin, div.MuiPickersClockPointer-pointer, div.MuiPickersClockPointer-thumb {
+    background-color: $primary;
+    border-color: $primary;
+}
+
+.MuiFormHelperText-root.MuiFormHelperText-root, .MuiPickersClockNumber-clockNumber.MuiPickersClockNumber-clockNumber {
+    font-size: 1.4rem;
+    font-family: $poppins;
+}
+
+.Mui-error.Mui-error {
+    color: $error;
+}
+
+span.MuiButton-label {
+    font-size: 1.4rem;
+    color: $primaryDark;
+    font-family: $poppins;
+    font-weight: 400;
+    text-transform: capitalize;
+}

@@ -106,6 +106,7 @@ h2, .h2 {
 p, .body, p.body, button.body {
   font-size: 1.4rem;
   font-family: "Poppins", sans-serif;
+  line-height: 2rem;
 }
 
 .underline {
@@ -142,6 +143,9 @@ p, .body, p.body, button.body {
 
 .btn.btn--primary {
   background-color: #A65290;
+}
+
+.btn.btn--primary span {
   color: #FCF8FB;
 }
 
@@ -162,10 +166,57 @@ p, .body, p.body, button.body {
   position: relative;
 }
 
+.textfield__label {
+  position: relative;
+  z-index: 2;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0 0.5rem;
+  margin-top: 2rem;
+  color: #752462;
+  font-weight: 600;
+  -webkit-transform-origin: left center;
+          transform-origin: left center;
+  -webkit-transform: translate(1.4rem, 50%) scale(0.75);
+          transform: translate(1.4rem, 50%) scale(0.75);
+  background-color: #FCF8FB;
+}
+
 .textfield.textfield {
   margin: 1.5rem auto;
   width: 100%;
   font-family: "Poppins", sans-serif;
+}
+
+.textfield.textfield.textfield--time {
+  height: 5rem;
+  border: 1px #D1C7CF solid;
+  border-radius: 7px;
+  padding-left: 1.5rem;
+  margin-top: 0;
+}
+
+.textfield.textfield.textfield--time:focus-within {
+  background-color: rgba(166, 82, 144, 0.05);
+  border-width: 2px;
+  border-color: #A65290;
+}
+
+.textfield.textfield.textfield--time:focus-within input {
+  background: none;
+}
+
+.textfield.textfield.textfield--time:hover {
+  border-color: #A65290;
+}
+
+.textfield.textfield.textfield--time input {
+  height: 5rem;
+}
+
+.textfield.textfield.textfield--time .MuiInput-underline::before, .textfield.textfield.textfield--time .MuiInput-underline::after {
+  display: none;
 }
 
 .textfield.textfield label, .textfield.textfield input {
@@ -279,6 +330,28 @@ p, .body, p.body, button.body {
   color: #752462;
 }
 
+div.MuiToolbar-root, div.MuiPickersClock-pin, div.MuiPickersClockPointer-pointer, div.MuiPickersClockPointer-thumb {
+  background-color: #A65290;
+  border-color: #A65290;
+}
+
+.MuiFormHelperText-root.MuiFormHelperText-root, .MuiPickersClockNumber-clockNumber.MuiPickersClockNumber-clockNumber {
+  font-size: 1.4rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.Mui-error.Mui-error {
+  color: #CD3737;
+}
+
+span.MuiButton-label {
+  font-size: 1.4rem;
+  color: #752462;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
 .log {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -368,6 +441,64 @@ p, .body, p.body, button.body {
 
 .log .btn {
   margin: 2rem auto;
+}
+
+.formStep {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10rem 2rem;
+  background-color: #FCF8FB;
+}
+
+.formStep__title {
+  color: #752462;
+}
+
+.formStep__text {
+  color: #44223C;
+  margin: 2rem auto;
+}
+
+.formStep__wrapper {
+  -webkit-animation-name: slideInFromBottom, fadeIn;
+          animation-name: slideInFromBottom, fadeIn;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+}
+
+.formStep__header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 2rem;
+  height: 4.4rem;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
+.formStep .btn {
+  margin-top: 5rem;
+}
+
+button.formStep__back {
+  position: absolute;
+  color: #A65290;
+  left: 2rem;
 }
 
 .App {

@@ -3,9 +3,12 @@ import { Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import logo from '../assets/logo-white.svg';
 import { useHistory } from "react-router-dom";
-import RegisterForm from "../components/RegisterForm";
+import RegisterForm from "../components/registerFormSteps/RegisterForm";
 import { useAuth } from "../contexts/AuthContext";
 import { db } from "../utils/firebase";
+import CompleteProfileStep from "../components/registerFormSteps/CompleteProfileStep";
+import SleepStep from "../components/registerFormSteps/SleepStep";
+import LunchStep from "../components/registerFormSteps/LunchStep";
 
 
 export interface IRegisterInfo {
@@ -18,9 +21,9 @@ export interface IRegisterInfo {
     breaktime: number;
 }
 
-const SignUp:FC = () => {
+export enum Stage { Basic, Introduction, Sleep, Lunch, Productivity, Afirmations };
 
-    enum Stage { Basic, Introduction, Sleep, Wake, Productivity, Afirmations };
+const SignUp:FC = () => {
     const [ stage, setStage ] = useState<number>(Stage.Basic);
     const [ error, setError ] = useState('');
     const [ openError, setOpenError ] = useState(false);
@@ -37,12 +40,14 @@ const SignUp:FC = () => {
             });
         }
     }, []);
+    
     function handleCloseError() {
         setOpenError(false);
         setError('');
     }
     
     console.log(registerInfo);
+    console.log(stage);
 
     return (
         <section className="log">
@@ -51,7 +56,13 @@ const SignUp:FC = () => {
                 <img src={logo} alt="Remo"/>
             </div>            
 
-            {(stage === Stage.Basic) && <RegisterForm setError={setError} setOpenError={setOpenError} setRegisterInfo={setRegisterInfo} setStage={setStage} registerInfo={registerInfo}/>}
+            {(stage === Stage.Basic) && <RegisterForm setError={setError} setOpenError={setOpenError} setRegisterInfo={setRegisterInfo} setStage={setStage}/>}
+
+            {(stage === Stage.Introduction) && <CompleteProfileStep setStage={setStage}/>}
+
+            {(stage === Stage.Sleep) && <SleepStep setStage={setStage} setRegisterInfo={setRegisterInfo}/>}
+
+            {(stage === Stage.Lunch) && <LunchStep setStage={setStage} setRegisterInfo={setRegisterInfo}/>}
 
             <Snackbar open={openError} autoHideDuration={5000} onClose={handleCloseError}>
                 <Alert onClose={handleCloseError} severity="error">

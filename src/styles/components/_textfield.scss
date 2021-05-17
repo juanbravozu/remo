@@ -3,10 +3,53 @@
         position: relative;
     }
 
+    &__label {
+        position: relative;
+        z-index: 2;
+        width: fit-content;
+        padding: 0 0.5rem;
+        margin-top: 2rem;
+        color: $primaryDark;
+        font-weight: 600;
+        transform-origin: left center;
+        transform: translate(1.4rem, 50%) scale(0.75);
+        background-color: $bgLight;
+    }
+
     &#{&} {
         margin: 1.5rem auto;
         width: 100%;
         font-family: $poppins;
+
+        &.textfield--time {
+            height: 5rem;
+            border: 1px $bgDark solid;
+            border-radius: 7px;
+            padding-left: 1.5rem;
+            margin-top: 0;
+
+            &:focus-within {
+                background-color: rgba($primary, 0.05);
+                border-width: 2px;
+                border-color: $primary;
+
+                input {
+                    background: none;
+                }
+            }
+
+            &:hover {
+                border-color: $primary;
+            }
+
+            input {
+                height: 5rem;
+            }
+
+            .MuiInput-underline::before, .MuiInput-underline::after {
+                display: none;
+            }
+        }
 
         label, input {
             font-size: 1.4rem;

@@ -17,7 +17,10 @@
     
         &--primary {
             background-color: $primary;
-            color: $white;
+
+            span {
+                color: $white;
+            }
     
             &:hover {
                 background-color: $primaryDark;
