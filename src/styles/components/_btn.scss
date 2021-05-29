@@ -3,7 +3,7 @@
         display: block;
         width: 100%;
         max-width: 250px;
-        min-height: 40px;
+        min-height: 4rem;
         padding: 0.5rem 2rem;
         border-radius: 2rem;
         font-size: 1.4rem;
@@ -35,5 +35,19 @@
                 background-color: $secondaryDark;
             }
         }
-    }    
+
+        &--group {
+            max-width: none;
+            padding: 0;
+        }
+    }   
+    
+    &__grouped {
+        width: 33%;
+        height: 4rem;
+
+        &--active .MuiButton-label {
+            font-weight: 600;
+        }
+    }
 }

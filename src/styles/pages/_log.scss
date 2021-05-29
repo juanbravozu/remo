@@ -105,6 +105,11 @@
         padding: 2rem;
         height: 4.4rem;
         box-sizing: content-box;
+        animation-name: fadeIn;
+        animation-timing-function: ease-out;
+        animation-duration: 0.5s;
+        animation-delay: 0.5s;
+        animation-fill-mode: backwards;
     }
 
     .btn {

@@ -47,7 +47,7 @@ const LunchStep:FC<ILunchstep> = ({ setStage, setRegisterInfo }) => {
                 <IconButton onClick={handlePreviousStage} className="formStep__back">
                     <ArrowBack />
                 </IconButton>
-                <p>Step 2 out of 5</p>
+                <p>Step 2 out of 4</p>
             </header>
             <h1 className="formStep__title">Lunch</h1>
             <p className="formStep__text">It may be hard to assign an exact lunch hour, but try to give an approximation.</p>

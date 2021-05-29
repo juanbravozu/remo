@@ -127,7 +127,7 @@ p, .body, p.body, button.body {
   display: block;
   width: 100%;
   max-width: 250px;
-  min-height: 40px;
+  min-height: 4rem;
   padding: 0.5rem 2rem;
   border-radius: 2rem;
   font-size: 1.4rem;
@@ -160,6 +160,20 @@ p, .body, p.body, button.body {
 
 .btn.btn--secondary:hover {
   background-color: #F6A06F;
+}
+
+.btn.btn--group {
+  max-width: none;
+  padding: 0;
+}
+
+.btn__grouped {
+  width: 33%;
+  height: 4rem;
+}
+
+.btn__grouped--active .MuiButton-label {
+  font-weight: 600;
 }
 
 .textfield__container {
@@ -489,6 +503,16 @@ span.MuiButton-label {
   height: 4.4rem;
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
+  -webkit-animation-name: fadeIn;
+          animation-name: fadeIn;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+  -webkit-animation-fill-mode: backwards;
+          animation-fill-mode: backwards;
 }
 
 .formStep .btn {

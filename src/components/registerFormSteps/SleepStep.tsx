@@ -1,4 +1,4 @@
-import { Button, IconButton } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { KeyboardTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { FC, useState } from "react";
 import DateFnsUtils from '@date-io/date-fns';
@@ -39,7 +39,7 @@ const SleepStep:FC<ISleepStep> = ({ setStage, setRegisterInfo }) => {
     <div className="formStep">
         <div className="formStep__wrapper">
             <header className="formStep__header">
-                <p>Step 1 out of 5</p>
+                <p>Step 1 out of 4</p>
             </header>
             <h1 className="formStep__title">Sleep habits</h1>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
