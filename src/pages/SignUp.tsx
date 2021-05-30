@@ -10,6 +10,7 @@ import CompleteProfileStep from "../components/registerFormSteps/CompleteProfile
 import SleepStep from "../components/registerFormSteps/SleepStep";
 import LunchStep from "../components/registerFormSteps/LunchStep";
 import ProductivityStep from "../components/registerFormSteps/ProductivityStep";
+import SlidersStep from "../components/registerFormSteps/SlidersStep";
 
 
 export interface IRegisterInfo {
@@ -66,6 +67,8 @@ const SignUp:FC = () => {
             {(stage === Stage.Lunch) && <LunchStep setStage={setStage} setRegisterInfo={setRegisterInfo}/>}
 
             {(stage === Stage.Productivity) && <ProductivityStep setStage={setStage} setRegisterInfo={setRegisterInfo} setError={setError} setOpenError={setOpenError}/>}
+
+            {(stage === Stage.Afirmations) && <SlidersStep setStage={setStage} setRegisterInfo={setRegisterInfo}/>}
 
             <Snackbar open={openError} autoHideDuration={5000} onClose={handleCloseError}>
                 <Alert onClose={handleCloseError} severity="error">
