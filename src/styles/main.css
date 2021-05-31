@@ -366,6 +366,16 @@ span.MuiButton-label {
   text-transform: capitalize;
 }
 
+.MuiSlider-markLabel.MuiSlider-markLabel {
+  -webkit-transform: none;
+          transform: none;
+}
+
+.MuiSlider-markLabel.MuiSlider-markLabel[data-index="1"] {
+  right: 0;
+  left: unset !important;
+}
+
 .log {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -393,7 +403,7 @@ span.MuiButton-label {
 
 .log__form {
   width: 100vw;
-  padding: 2rem;
+  padding: 3rem;
   background-color: #FCF8FB;
   border-radius: 20px 20px 0 0;
   -webkit-animation-name: slideInFromBottom, fadeIn;
@@ -430,7 +440,7 @@ span.MuiButton-label {
 .log__title, .log__navigate {
   color: #752462;
   text-align: center;
-  margin: 2rem auto;
+  margin: 3rem auto;
 }
 
 .log__navigate {
@@ -454,17 +464,15 @@ span.MuiButton-label {
 }
 
 .log .btn {
-  margin: 2rem auto;
+  margin: 3rem auto;
 }
 
 .formStep {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 10rem 2rem;
+  width: 100%;
+  min-height: 100vh;
+  padding: 10rem 3rem;
   background-color: #FCF8FB;
+  overflow-x: hidden;
 }
 
 .formStep__title {
@@ -473,7 +481,7 @@ span.MuiButton-label {
 
 .formStep__text {
   color: #44223C;
-  margin: 2rem auto;
+  margin: 3rem auto;
 }
 
 .formStep__wrapper {
@@ -499,7 +507,7 @@ span.MuiButton-label {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 2rem;
+  padding: 3rem;
   height: 4.4rem;
   -webkit-box-sizing: content-box;
           box-sizing: content-box;
@@ -515,6 +523,10 @@ span.MuiButton-label {
           animation-fill-mode: backwards;
 }
 
+.formStep__label {
+  margin-top: 4rem;
+}
+
 .formStep .btn {
   margin-top: 5rem;
 }
@@ -522,7 +534,7 @@ span.MuiButton-label {
 button.formStep__back {
   position: absolute;
   color: #A65290;
-  left: 2rem;
+  left: 3rem;
 }
 
 .App {
@@ -536,5 +548,9 @@ button.formStep__back {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.hidden {
+  display: none;
 }
 /*# sourceMappingURL=main.css.map */

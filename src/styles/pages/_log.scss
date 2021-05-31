@@ -15,7 +15,7 @@
 
     &__form {
         width: 100vw;
-        padding: 2rem;
+        padding: $outerPad;
         background-color: $bgLight;
         border-radius: 20px 20px 0 0;
         animation-name: slideInFromBottom, fadeIn;
@@ -44,7 +44,7 @@
     &__title, &__navigate {
         color: $primaryDark;
         text-align: center;
-        margin: 2rem auto;
+        margin: $outerPad auto;
     }
 
     &__navigate {
@@ -66,18 +66,16 @@
     }
 
     .btn {
-        margin: 2rem auto;
+        margin: $outerPad auto;
     }
 }
 
 .formStep {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 10rem 2rem;
+    width: 100%;
+    min-height: 100vh;
+    padding: 10rem $outerPad;
     background-color: $bgLight;
+    overflow-x: hidden;
 
     &__title {
         color: $primaryDark;
@@ -85,7 +83,7 @@
 
     &__text {
         color: $interfaceDark;
-        margin: 2rem auto;
+        margin: $outerPad auto;
     }
 
     &__wrapper {
@@ -102,7 +100,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 2rem;
+        padding: $outerPad;
         height: 4.4rem;
         box-sizing: content-box;
         animation-name: fadeIn;
@@ -110,6 +108,10 @@
         animation-duration: 0.5s;
         animation-delay: 0.5s;
         animation-fill-mode: backwards;
+    }
+
+    &__label {
+        margin-top: 4rem;
     }
 
     .btn {
@@ -120,5 +122,5 @@
 button.formStep__back {
     position: absolute;
     color: $primary;
-    left: 2rem;
+    left: $outerPad;
 }

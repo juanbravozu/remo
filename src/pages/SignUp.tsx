@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 import { Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import logo from '../assets/logo-white.svg';
-/* import { useHistory } from "react-router-dom"; */
+import { useHistory } from "react-router-dom";
 import RegisterForm from "../components/registerFormSteps/RegisterForm";
 import { useAuth } from "../contexts/AuthContext";
 import { db } from "../utils/firebase";
@@ -21,6 +21,9 @@ export interface IRegisterInfo {
     waketime: number;
     lunchtime: number;
     breaktime: number;
+    nightEnjoy: number;
+    productivity: number;
+    wakeDifficulty: number;
 }
 
 export enum Stage { Basic, Introduction, Sleep, Lunch, Productivity, Afirmations };
@@ -31,7 +34,7 @@ const SignUp:FC = () => {
     const [ openError, setOpenError ] = useState(false);
     const [ registerInfo, setRegisterInfo] = useState<IRegisterInfo>();
     const { currentUser } = useAuth()!;
-    /* const history = useHistory(); */
+    const history = useHistory();
 
     useEffect(() => {
         if(currentUser) {
@@ -48,13 +51,24 @@ const SignUp:FC = () => {
         setError('');
     }
     
-    console.log(registerInfo);
-    console.log(stage);
+    if(stage === 6) {
+        const profiles = [0, 0, 0, 0, 0];
+
+        if(registerInfo!.bedtime < 22 && registerInfo!.bedtime > 12) {
+            profiles[0]++;
+            profiles[1]++;
+        } else if(registerInfo!.bedtime >= 22 || registerInfo!.bedtime === 0) {
+            /* profiles[] */
+        }
+        history.push('/');
+    }
+
+    console.log(registerInfo)
 
     return (
         <section className="log">
 
-            <div className="flex-center log__logo">
+            <div className={`flex-center log__logo ${(stage > Stage.Basic && stage < 6) && "hidden"}`}>
                 <img src={logo} alt="Remo"/>
             </div>            
 
@@ -68,7 +82,7 @@ const SignUp:FC = () => {
 
             {(stage === Stage.Productivity) && <ProductivityStep setStage={setStage} setRegisterInfo={setRegisterInfo} setError={setError} setOpenError={setOpenError}/>}
 
-            {(stage === Stage.Afirmations) && <SlidersStep setStage={setStage} setRegisterInfo={setRegisterInfo}/>}
+            {(stage === Stage.Afirmations) && <SlidersStep setStage={setStage} setRegisterInfo={setRegisterInfo} setError={setError} setOpenError={setOpenError}/>}
 
             <Snackbar open={openError} autoHideDuration={5000} onClose={handleCloseError}>
                 <Alert onClose={handleCloseError} severity="error">

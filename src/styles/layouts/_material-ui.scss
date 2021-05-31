@@ -62,3 +62,12 @@ span.MuiButton-label {
     font-weight: 400;
     text-transform: capitalize;
 }
+
+.MuiSlider-markLabel.MuiSlider-markLabel {
+    transform: none;
+
+    &[data-index="1"] {
+        right: 0;
+        left: unset !important;
+    }
+}
