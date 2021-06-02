@@ -27,7 +27,7 @@ const LunchStep:FC<ILunchstep> = ({ setStage, setRegisterInfo }) => {
          setRegisterInfo((prevState:IRegisterInfo) => ({
             ...prevState,
             lunchtime: lunchTimeNumber,
-            napTime: napTimeNumber
+            naptime: napTimeNumber
         })); 
         setStage((prevStage:number) => {return prevStage + 1});
     }

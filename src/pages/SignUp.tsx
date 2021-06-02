@@ -20,10 +20,12 @@ export interface IRegisterInfo {
     bedtime: number;
     waketime: number;
     lunchtime: number;
+    naptime: number;
     breaktime: number;
     nightEnjoy: number;
     productivity: number;
     wakeDifficulty: number;
+    satisfaction: number;
 }
 
 export enum Stage { Basic, Introduction, Sleep, Lunch, Productivity, Afirmations };
@@ -57,7 +59,7 @@ function calculateProfile(user:IRegisterInfo) {
         profiles[0].value--;
     }
 
-    if(user.nightEnjoy  == 3) profiles[3].value++;
+    if(user.nightEnjoy  === 3) profiles[3].value++;
     if(user.nightEnjoy > 3) profiles[4].value++;
 
     let result = profiles.reduce((acc, current) => {
@@ -96,23 +98,31 @@ const SignUp:FC = () => {
         setError('');
     }
 
-    function handleCompleteForm() {
-        calculateProfile(registerInfo!);
-    }
+    useEffect(() => {
+        if(stage === Stage.Afirmations && registerInfo!.satisfaction) {
+            const userUpload = {
+                name: registerInfo?.name,
+                email: registerInfo?.email,
+                uid: registerInfo?.uid,
+                profile: calculateProfile(registerInfo as IRegisterInfo),
+                lunch: registerInfo?.lunchtime,
+                nap: registerInfo?.naptime,
+                satisfaction: registerInfo?.satisfaction,
+            }
     
-    if(stage === 6) {
-        const profiles = [0, 0, 0, 0, 0];
-
-        if(registerInfo!.bedtime < 22 && registerInfo!.bedtime > 12) {
-            profiles[0]++;
-            profiles[1]++;
-        } else if(registerInfo!.bedtime >= 22 || registerInfo!.bedtime === 0) {
-            /* profiles[] */
+            console.log('From complete', userUpload);
+            db.collection('users').doc(userUpload.uid).set(userUpload)
+            .then(() => {
+                history.push('/');
+            })
+            .catch(error => console.log(error));
         }
-        history.push('/');
-    }
+        
+    }, [registerInfo])
+        
+    
 
-    console.log(registerInfo)
+    /* console.log(registerInfo) */
 
     return (
         <section className="log">
@@ -131,7 +141,7 @@ const SignUp:FC = () => {
 
             {(stage === Stage.Productivity) && <ProductivityStep setStage={setStage} setRegisterInfo={setRegisterInfo} setError={setError} setOpenError={setOpenError}/>}
 
-            {(stage === Stage.Afirmations) && <SlidersStep setStage={setStage} onComplete={handleCompleteForm} setRegisterInfo={setRegisterInfo} setError={setError} setOpenError={setOpenError}/>}
+            {(stage === Stage.Afirmations) && <SlidersStep setStage={setStage} setRegisterInfo={setRegisterInfo} setError={setError} setOpenError={setOpenError}/>}
 
             <Snackbar open={openError} autoHideDuration={5000} onClose={handleCloseError}>
                 <Alert onClose={handleCloseError} severity="error">

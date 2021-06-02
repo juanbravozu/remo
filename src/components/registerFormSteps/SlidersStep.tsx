@@ -7,7 +7,6 @@ interface ISlidersStep {
     setRegisterInfo: Function;
     setError: (value:string) => void;
     setOpenError: (value:boolean) => void;
-    onComplete: Function;
 }
 
 const marks = [
@@ -21,7 +20,7 @@ const marks = [
     }
 ];
 
-const SlidersStep:FC<ISlidersStep> = ({ setStage, setRegisterInfo, setError, setOpenError, onComplete }) => {
+const SlidersStep:FC<ISlidersStep> = ({ setStage, setRegisterInfo, setError, setOpenError }) => {
 
     const [ wakeValue, setWakeValue ] = useState<number | number[]>(-1);
     const [ nightValue, setNightValue ] = useState<number | number[]>(-1);
@@ -59,7 +58,6 @@ const SlidersStep:FC<ISlidersStep> = ({ setStage, setRegisterInfo, setError, set
 
     function handleClick() {
         updateInformation();
-        onComplete();
     }
 
     return (
