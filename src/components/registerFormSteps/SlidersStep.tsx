@@ -7,6 +7,7 @@ interface ISlidersStep {
     setRegisterInfo: Function;
     setError: (value:string) => void;
     setOpenError: (value:boolean) => void;
+    onComplete: Function;
 }
 
 const marks = [
@@ -20,7 +21,7 @@ const marks = [
     }
 ];
 
-const SlidersStep:FC<ISlidersStep> = ({ setStage, setRegisterInfo, setError, setOpenError }) => {
+const SlidersStep:FC<ISlidersStep> = ({ setStage, setRegisterInfo, setError, setOpenError, onComplete }) => {
 
     const [ wakeValue, setWakeValue ] = useState<number | number[]>(-1);
     const [ nightValue, setNightValue ] = useState<number | number[]>(-1);
@@ -30,7 +31,7 @@ const SlidersStep:FC<ISlidersStep> = ({ setStage, setRegisterInfo, setError, set
         setStage((prevStage:number) => {return prevStage - 1})
     }
 
-    function handleUpdateInformation() {
+    function updateInformation() {
         if(wakeValue === -1 || nightValue === -1 || satisfactionValue === -1) {
             setError('Please choose a value in all fields');
             return setOpenError(true);
@@ -42,7 +43,6 @@ const SlidersStep:FC<ISlidersStep> = ({ setStage, setRegisterInfo, setError, set
             wakeDifficulty: wakeValue,
             satisfaction: satisfactionValue
         }));
-        setStage((prevStage:number) => {return prevStage + 1});
     }
 
     function handleWakeValueChanged(e:any, value:number | number[]) {
@@ -56,6 +56,12 @@ const SlidersStep:FC<ISlidersStep> = ({ setStage, setRegisterInfo, setError, set
     function handleSatisfactionValueChanged(e:any, value:number | number[]) {
         setSatisfactionValue(value);
     }
+
+    function handleClick() {
+        updateInformation();
+        onComplete();
+    }
+
     return (
         <div className="formStep">
             <div className="formStep__wrapper">
@@ -104,7 +110,7 @@ const SlidersStep:FC<ISlidersStep> = ({ setStage, setRegisterInfo, setError, set
                     onChange={handleSatisfactionValueChanged}
                 />
 
-                <Button className="btn btn--secondary" onClick={handleUpdateInformation}>Continue</Button>
+                <Button className="btn btn--secondary" onClick={handleClick}>Continue</Button>
             </div>
         </div>
     );

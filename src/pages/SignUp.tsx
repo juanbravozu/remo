@@ -28,6 +28,51 @@ export interface IRegisterInfo {
 
 export enum Stage { Basic, Introduction, Sleep, Lunch, Productivity, Afirmations };
 
+function calculateProfile(user:IRegisterInfo) {
+    const profiles = [{id: 0, value: 0}, {id: 1, value: 0}, {id: 2, value: 0}, {id: 3, value: 0}, {id: 4, value: 0}];
+
+    if(user.bedtime > 12 && user.bedtime < 23) {
+        profiles[0].value++;
+        profiles[1].value++;
+    } else {
+        if(user.bedtime >= 23 || user.bedtime < 0.5) profiles[2].value++;
+        if(user.bedtime >= 0 && user.bedtime < 1) profiles[3].value++;
+        if(user.bedtime >= 0.5 && user.bedtime < 18) profiles[4].value++; 
+    }
+
+    if(user.productivity === 0) {
+        profiles[0].value += 2;
+        profiles[1].value++;
+    } else if(user.productivity === 1) {
+        profiles[2].value += 2;
+        profiles[3].value++;
+    } else {
+        profiles[4].value++;
+    }
+
+    if(user.wakeDifficulty > 4) {
+        profiles[0].value--;
+        profiles[1].value--;
+    } else if(user.wakeDifficulty > 3) {
+        profiles[0].value--;
+    }
+
+    if(user.nightEnjoy  == 3) profiles[3].value++;
+    if(user.nightEnjoy > 3) profiles[4].value++;
+
+    let result = profiles.reduce((acc, current) => {
+        if(acc.value < current.value) return current;
+        return acc;
+    });
+
+    if(result.id === 0 && profiles[0].value === profiles[1].value) result = profiles[1];
+    if(result.id === 3 && profiles[3].value === profiles[2].value) result = profiles[2];
+    if(result.id === 4 && profiles[4].value === profiles[3].value) result = profiles[3];
+
+    console.log(result);
+    return result.id;
+}
+
 const SignUp:FC = () => {
     const [ stage, setStage ] = useState<number>(Stage.Basic);
     const [ error, setError ] = useState<string>('');
@@ -49,6 +94,10 @@ const SignUp:FC = () => {
     function handleCloseError() {
         setOpenError(false);
         setError('');
+    }
+
+    function handleCompleteForm() {
+        calculateProfile(registerInfo!);
     }
     
     if(stage === 6) {
@@ -82,7 +131,7 @@ const SignUp:FC = () => {
 
             {(stage === Stage.Productivity) && <ProductivityStep setStage={setStage} setRegisterInfo={setRegisterInfo} setError={setError} setOpenError={setOpenError}/>}
 
-            {(stage === Stage.Afirmations) && <SlidersStep setStage={setStage} setRegisterInfo={setRegisterInfo} setError={setError} setOpenError={setOpenError}/>}
+            {(stage === Stage.Afirmations) && <SlidersStep setStage={setStage} onComplete={handleCompleteForm} setRegisterInfo={setRegisterInfo} setError={setError} setOpenError={setOpenError}/>}
 
             <Snackbar open={openError} autoHideDuration={5000} onClose={handleCloseError}>
                 <Alert onClose={handleCloseError} severity="error">
