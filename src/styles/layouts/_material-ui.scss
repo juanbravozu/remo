@@ -28,6 +28,16 @@
             }
         }
 
+        &-standardSuccess {
+            background-color: $bgLight;
+            border: 2px $success solid;
+            border-radius: 7px;
+            
+            .MuiAlert-icon {
+                color: $success;
+            }
+        }
+
         &-message {
             font-size: 1.4rem;
             color: inherit;

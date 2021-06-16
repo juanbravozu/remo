@@ -45,24 +45,24 @@ const ProductivityStep:FC<IProductivityStep> = ({ setStage, setRegisterInfo, set
                     <IconButton onClick={handlePreviousStage} className="formStep__back">
                         <ArrowBack />
                     </IconButton>
-                    <p>Step 3 out of 4</p>
+                    <p>Paso 4 de 5</p>
                 </header>
-                <h1 className="formStep__title">Productivity</h1>
-                <p className="formStep__text">Please choose at what time of the day you feel more productive.</p>
+                <h1 className="formStep__title">Productividad</h1>
+                <p className="formStep__text">Por favor elige el momento del día en el que sientes que eres más productivo.</p>
 
                 <ButtonGroup className="btn btn--group">
                     <Button className={(currentProd === Productivity.Morning) ? "btn__grouped btn__grouped--active" : "btn__grouped"} onClick={() => handleSelection(Productivity.Morning)}>
-                        Morning
+                        Mañana
                     </Button>
                     <Button className={(currentProd === Productivity.Afternoon) ? "btn__grouped btn__grouped--active" : "btn__grouped"} onClick={() => handleSelection(Productivity.Afternoon)}>
-                        Afternoon
+                        Tarde
                     </Button>
                     <Button className={(currentProd === Productivity.Evening) ? "btn__grouped btn__grouped--active" : "btn__grouped"} onClick={() => handleSelection(Productivity.Evening)}>
-                        Evening
+                        Noche
                     </Button>
                 </ButtonGroup>
 
-                <Button className="btn btn--secondary" onClick={handleNextStage}>Continue</Button>
+                <Button className="btn btn--secondary" onClick={handleNextStage}>Continuar</Button>
             </div>
         </div>
     );

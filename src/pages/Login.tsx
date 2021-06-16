@@ -30,12 +30,12 @@ const Login:FC = () => {
 
         if(!emailValue && !passwordValue) {
             setOpenError(true);
-            return setError('All fields need to be filled');
+            return setError('Debes llenar todos los campos');
         }
 
         if(!validateEmail(getInnerInputValue(emailRef!.current!))) {
             setOpenError(true);
-            return setError('Email is not valid');
+            return setError('La dirección de correo electrónico no es válida');
         }
 
         login(emailValue, passwordValue)
@@ -44,6 +44,13 @@ const Login:FC = () => {
         })
         .catch((error:any) => {
             setOpenError(true);
+            switch(error.code) {
+                case 'auth/user-not-found':
+                    return setError('No encontramos una cuenta con esa dirección de correo electrónico');
+
+                case 'auth/wrong-password':
+                    return setError('Contraseña incorrecta');
+            }
             return setError(error.message);
         })
     }
@@ -62,20 +69,20 @@ const Login:FC = () => {
             </div>            
 
             <form className="log__form" onSubmit={handleSubmit}>
-                <h2 className="log__title">Log In</h2>
-                <TextField variant="outlined" ref={emailRef} type="email" id="email" label="Email" className="textfield"></TextField>
+                <h2 className="log__title">Inicia sesión</h2>
+                <TextField variant="outlined" ref={emailRef} type="email" id="email" label="Correo electrónico" className="textfield"></TextField>
                 <div className="textfield__container">
-                    <TextField variant="outlined" ref={passwordRef} type={passwordVisible ? 'text' :  'password'} id="password" label="Password" className="textfield"></TextField>
+                    <TextField variant="outlined" ref={passwordRef} type={passwordVisible ? 'text' :  'password'} id="password" label="Contraseña" className="textfield"></TextField>
                     <IconButton onClick={toggleVisibility} className="textfield__iconEnd">
                         {passwordVisible && <VisibilityOff/>}
                         {!passwordVisible && <Visibility/>}
                     </IconButton>
                 </div>           
-                <Link to="/forgotPassword" className="log__forgotPassword">Forgot your password?</Link>     
-                <Button variant="contained" className="btn btn--primary" type="submit">Log In</Button>
+                <Link to="/forgotPassword" className="log__forgotPassword">¿Olvidaste tu contraseña?</Link>     
+                <Button variant="contained" className="btn btn--primary" type="submit">Iniciar sesión</Button>
 
                 
-                <p className="log__navigate">Don't have an account? <Link to="/signup" className="underline">Sign Up</Link></p>
+                <p className="log__navigate">¿No tienes cuenta? <Link to="/signup" className="underline">Regístrate</Link></p>
             </form>
 
             <Snackbar open={openError} autoHideDuration={5000} onClose={handleClose}>

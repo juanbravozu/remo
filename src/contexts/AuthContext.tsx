@@ -6,6 +6,7 @@ type authContextType = {
     signup: (email: string, password: string) => any;
     login: (email: string, password: string) => any; 
     logout: () => Promise<void>;
+    resetPassword: (email:string) => Promise<void>;
 }
 
 const AuthContext = React.createContext<authContextType | undefined>(undefined);
@@ -30,6 +31,10 @@ export const AuthProvider:FC = ({ children }) => {
         return auth.signOut();
     }
 
+    function resetPassword(email:string) {
+        return auth.sendPasswordResetEmail(email);
+    }
+
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user);
@@ -43,7 +48,8 @@ export const AuthProvider:FC = ({ children }) => {
         currentUser,
         signup,
         login,
-        logout
+        logout,
+        resetPassword,
     }
 
     return (

@@ -11,12 +11,15 @@ import SleepStep from "../components/registerFormSteps/SleepStep";
 import LunchStep from "../components/registerFormSteps/LunchStep";
 import ProductivityStep from "../components/registerFormSteps/ProductivityStep";
 import SlidersStep from "../components/registerFormSteps/SlidersStep";
+import WorkdayStep from "../components/registerFormSteps/WorkdayStep";
+import { IUser, parseWeekToDays, resetUserWeek } from "../utils/algorithm";
 
 
 export interface IRegisterInfo {
     name: string;
     email: string;
     uid: string;
+    workday: Array<number>;
     bedtime: number;
     waketime: number;
     lunchtime: number;
@@ -28,7 +31,7 @@ export interface IRegisterInfo {
     satisfaction: number;
 }
 
-export enum Stage { Basic, Introduction, Sleep, Lunch, Productivity, Afirmations };
+export enum Stage { Basic, Introduction, Workday, Sleep, Lunch, Productivity, Afirmations };
 
 function calculateProfile(user:IRegisterInfo) {
     const profiles = [{id: 0, value: 0}, {id: 1, value: 0}, {id: 2, value: 0}, {id: 3, value: 0}, {id: 4, value: 0}];
@@ -100,15 +103,21 @@ const SignUp:FC = () => {
 
     useEffect(() => {
         if(stage === Stage.Afirmations && registerInfo!.satisfaction) {
-            const userUpload = {
-                name: registerInfo?.name,
-                email: registerInfo?.email,
-                uid: registerInfo?.uid,
+            const userUpload:IUser = {
+                name: registerInfo!.name,
+                email: registerInfo!.email,
+                uid: registerInfo!.uid,
                 profile: calculateProfile(registerInfo as IRegisterInfo),
-                lunch: registerInfo?.lunchtime,
-                nap: registerInfo?.naptime,
-                satisfaction: registerInfo?.satisfaction,
+                workday: registerInfo!.workday,
+                lunch: registerInfo!.lunchtime,
+                nap: registerInfo!.naptime,
+                satisfaction: registerInfo!.satisfaction,
+                tasks: []
             }
+
+            resetUserWeek(userUpload);
+            parseWeekToDays(userUpload.currentWeek!, userUpload);
+            delete userUpload.currentWeek;
     
             console.log('From complete', userUpload);
             db.collection('users').doc(userUpload.uid).set(userUpload)
@@ -134,6 +143,8 @@ const SignUp:FC = () => {
             {(stage === Stage.Basic) && <RegisterForm setError={setError} setOpenError={setOpenError} setRegisterInfo={setRegisterInfo} setStage={setStage}/>}
 
             {(stage === Stage.Introduction) && <CompleteProfileStep setStage={setStage}/>}
+
+            {(stage === Stage.Workday) && <WorkdayStep setStage={setStage} setRegisterInfo={setRegisterInfo}/>}
 
             {(stage === Stage.Sleep) && <SleepStep setStage={setStage} setRegisterInfo={setRegisterInfo}/>}
 

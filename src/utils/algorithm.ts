@@ -24,15 +24,23 @@ interface IAvailability {
     available: boolean;
 }
 
-interface IUser {
+export interface IUser {
     uid: string,
     name: string,
+    email: string,
     profile: number,
     lunch: number,
     nap: number,
     workday: Array<number>,
     satisfaction: number,
-    currentWeek: Array<Array<IAvailability>>,
+    currentWeek?: Array<Array<IAvailability>>,
+    day0?: Array<IAvailability>,
+    day1?: Array<IAvailability>,
+    day2?: Array<IAvailability>,
+    day3?: Array<IAvailability>,
+    day4?: Array<IAvailability>,
+    day5?: Array<IAvailability>,
+    day6?: Array<IAvailability>,
     tasks: Array<ITask>;
 }
 
@@ -54,12 +62,26 @@ const emptyWeek = [
     [{hour: 4, available: true}, {hour: 4.5, available: true}, {hour: 5, available: true}, {hour: 5.5, available: true}, {hour: 6, available: true}, {hour: 6.5, available: true}, {hour: 7, available: true}, {hour: 7.5, available: true}, {hour: 8, available: true}, {hour: 8.5, available: true}, {hour: 9, available: true}, {hour: 9.5, available: true}, {hour: 10, available: true}, {hour: 10.5, available: true}, {hour: 11, available: true}, {hour: 11.5, available: true}, {hour: 12, available: true}, {hour: 12.5, available: true}, {hour: 13, available: true}, {hour: 13.5, available: true}, {hour: 14, available: true}, {hour: 14.5, available: true}, {hour: 15, available: true}, {hour: 15.5, available: true}, {hour: 16, available: true}, {hour: 16.5, available: true}, {hour: 17, available: true}, {hour: 17.5, available: true}, {hour: 18, available: true}, {hour: 18.5, available: true}, {hour: 19, available: true}, {hour: 19.5, available: true}, {hour: 20, available: true}, {hour: 20.5, available: true}, {hour: 21, available: true}, {hour: 21.5, available: true}, {hour: 22, available: true}, {hour: 22.5, available: true}, {hour: 23, available: true}, {hour: 23.5, available: true}]
 ]
 
+function parseDaysToWeek(week:Array<Array<IAvailability>>, user:IUser) {
+    user.currentWeek = week;
+}
+
+function parseWeekToDays(week:Array<Array<IAvailability>>, user:IUser) {
+    user.day0 = week[0];
+    user.day1 = week[1];
+    user.day2 = week[2];
+    user.day3 = week[3];
+    user.day4 = week[4];
+    user.day5 = week[5];
+    user.day6 = week[6];
+}
+
 function filterAndSortTasks(tasks:Array<ITask>) {
     const [ manualTasks, recommendTasks ] = filterAssignedTasks(tasks);
     manualTasks.forEach(task => {
         for(let j = 0; j < task.schedule.length; j++) {
             for(let i = task.schedule[j].hour[0]; i < task.schedule[j].hour[1]; i+=0.5) {
-                user1.currentWeek[task.schedule[j].day][(i - 4) * 2].available = false;
+                user1.currentWeek![task.schedule[j].day][(i - 4) * 2].available = false;
             }
         }
     });
@@ -119,9 +141,9 @@ function calculateSimilitude(prodA:number, prodB:number, urgA:number, urgB:numbe
 function distributeTasks(user:IUser, tasks:Array<ITask>, recommendations:Array<Array<IRecommendation>>) {
     const currentDay = new Date();
     setLunchTimeUnavailability(user);
-    user.currentWeek.forEach((day, dayIndex) => {
+    user.currentWeek!.forEach((day, dayIndex) => {
         if(currentDay.getDay() <= dayIndex) { //Día
-            tasks.forEach((task, index) => { //Tarea
+            tasks.forEach((task) => { //Tarea
                 if(task.assigned < task.duration) {
 
                     recommendations.forEach(recommendation => { //Recomendación de cada día
@@ -184,13 +206,13 @@ function distributeTasks(user:IUser, tasks:Array<ITask>, recommendations:Array<A
 
                     for(let j = 0; j < task.schedule.length; j++) {
                         for(let i = task.schedule[j].hour[0]; i < task.schedule[j].hour[1]; i+=0.5) {
-                            user1.currentWeek[task.schedule[j].day][(i - 4) * 2].available = false;
+                            user1.currentWeek![task.schedule[j].day][(i - 4) * 2].available = false;
                         }
                     }
                 } else {
                     for(let j = 0; j < task.schedule.length; j++) {
                         for(let i = task.schedule[j].hour[0]; i < task.schedule[j].hour[1]; i+=0.5) {
-                            user1.currentWeek[task.schedule[j].day][(i - 4) * 2].available = false;
+                            user1.currentWeek![task.schedule[j].day][(i - 4) * 2].available = false;
                         }
                     }
                 }
@@ -211,7 +233,7 @@ function checkAvailability(day:Array<IAvailability>, initialHour:number, endHour
 }
 
 function assignTaskValue(user:IUser, task:ITask, dayIndex:number, initialHour:number, endHour:number) {
-    const hoursToOccupy = user.currentWeek[dayIndex].filter(hour => (hour.hour >= initialHour && hour.hour <= endHour));
+    const hoursToOccupy = user.currentWeek![dayIndex].filter(hour => (hour.hour >= initialHour && hour.hour <= endHour));
 
     hoursToOccupy.forEach(hour => hour.available = false);
 
@@ -220,7 +242,7 @@ function assignTaskValue(user:IUser, task:ITask, dayIndex:number, initialHour:nu
 }
 
 function setLunchTimeUnavailability(user:IUser) {
-    user.currentWeek.forEach(day => {
+    user.currentWeek!.forEach(day => {
         for(let i = user.lunch; i < user.nap; i += 0.5) {
             day[(i - 4) * 2].available = false;
         }
@@ -239,6 +261,7 @@ function resetUserWeek(user:IUser) {
 const user1:IUser = {
     uid: "1",
     name: "Usuario",
+    email: "Correo :3",
     profile: 2,
     lunch: 13,
     nap: 14,
@@ -288,4 +311,4 @@ distributeTasks(user1, pendingTasks, similitudes);
 
 console.log(user1);
 
-export { getSimilitude, distributeTasks };
+export { getSimilitude, distributeTasks, filterAndSortTasks, resetUserWeek, parseDaysToWeek, parseWeekToDays };

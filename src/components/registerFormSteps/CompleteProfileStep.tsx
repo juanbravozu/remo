@@ -9,15 +9,15 @@ interface ICompleteProfileStep {
 const CompleteProfileStep:FC<ICompleteProfileStep> = ({ setStage }) => {
 
     function handleStageChange() {
-        setStage(Stage.Sleep);
+        setStage(Stage.Workday);
     }
 
     return (
         <div className="formStep">
             <div className="formStep__wrapper">
-                <h1 className="formStep__title">Let’s complete your profile</h1>
-                <p className="formStep__text">In order to assign you a productivity profile, we need to know a little bit about you.</p>
-                <Button className="btn btn--secondary" onClick={handleStageChange}>Continue</Button>
+                <h1 className="formStep__title">Completemos tu perfil</h1>
+                <p className="formStep__text">Para poder asignarte un perfil de productividad necesitamos conocerte un poco más.</p>
+                <Button className="btn btn--secondary" onClick={handleStageChange}>Empecemos</Button>
             </div>            
         </div>
     )

@@ -47,18 +47,18 @@ const LunchStep:FC<ILunchstep> = ({ setStage, setRegisterInfo }) => {
                 <IconButton onClick={handlePreviousStage} className="formStep__back">
                     <ArrowBack />
                 </IconButton>
-                <p>Step 2 out of 4</p>
+                <p>Paso 3 de 5</p>
             </header>
-            <h1 className="formStep__title">Lunch</h1>
-            <p className="formStep__text">It may be hard to assign an exact lunch hour, but try to give an approximation.</p>
+            <h1 className="formStep__title">Almuerzo</h1>
+            <p className="formStep__text">Puede ser difícil escoger una hora de almuerzo, pero intenta elegir aunque sea una aproximación.</p>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <p className="textfield__label">When do you usually have lunch?</p>
+                <p className="textfield__label">¿A qué hora sueles almorzar?</p>
                 <KeyboardTimePicker minutesStep={5} keyboardIcon={<AccessTimeIcon/>} className="textfield textfield--time" value={lunchTime} onChange={handlelunchTimeChange}/>
 
-                <p className="textfield__label">When do you start working again?</p>
+                <p className="textfield__label">¿A qué hora retomas el trabajo?</p>
                 <KeyboardTimePicker minutesStep={5} keyboardIcon={<AccessTimeIcon/>} className="textfield textfield--time" value={napTime} onChange={handlenapTimeChange}/>
             </MuiPickersUtilsProvider>            
-            <Button className="btn btn--secondary" onClick={handleNextStage}>Continue</Button>
+            <Button className="btn btn--secondary" onClick={handleNextStage}>Continuar</Button>
         </div>            
     </div>
     )

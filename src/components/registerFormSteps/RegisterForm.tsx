@@ -31,25 +31,25 @@ const RegisterForm:FC<BasicRegisterProps> = ({setError, setOpenError, setRegiste
 
         if(!getInnerInputValue(nameRef!.current!) || !getInnerInputValue(emailRef!.current!) || !getInnerInputValue(passwordRef!.current!) || !getInnerInputValue(passwordConfirmRef!.current!)){
             setOpenError(true);
-            setError('All fields need to be filled');
+            setError('Debes llenar todos los campos para continuar');
             return false;
         }
 
         if(!validateEmail(getInnerInputValue(emailRef!.current!))) {
             setOpenError(true);
-            setError('Email is not valid');
+            setError('La dirección de correo electrónico no es válida');
             return false;
         }
 
         if(getInnerInputValue(passwordRef!.current!) !== getInnerInputValue(passwordConfirmRef!.current!)) {
             setOpenError(true);
-            setError('Passwords do not match');
+            setError('Las contraseñas no coinciden');
             return false;
         }
 
         if(getInnerInputValue(termsCheckboxRef!.current!, 'checked') === 'false') {
             setOpenError(true);
-            setError('You need to accept our Terms and Conditions');
+            setError('Debes aceptar los términos y condiciones');
             return false;
         }
 
@@ -61,8 +61,7 @@ const RegisterForm:FC<BasicRegisterProps> = ({setError, setOpenError, setRegiste
         event.preventDefault();
 
         if(checkValid()) {
-            console.log('Passed validation');
-            
+
             setLoading(true);
             signup(getInnerInputValue(emailRef!.current!), getInnerInputValue(passwordRef!.current!))
             .then((user:any) => {
@@ -85,7 +84,14 @@ const RegisterForm:FC<BasicRegisterProps> = ({setError, setOpenError, setRegiste
             .catch((error:any) => {
                 setLoading(false);
                 setOpenError(true);
-                setError(error.message);
+                switch(error.code) {
+                    case 'auth/email-already-in-use':
+                        return setError('Ya existe una cuenta con esa dirección de correo electrónico');
+                        
+                    case 'auth/weak-password':
+                        return setError('La contraseña debe contener al menos 6 caracteres');
+                }
+                return setError(error.message);
             });
         }
     }
@@ -96,27 +102,27 @@ const RegisterForm:FC<BasicRegisterProps> = ({setError, setOpenError, setRegiste
 
     return (
         <form className="log__form" onSubmit={handleSubmitRegister}>
-            <h2 className="log__title">Sign Up</h2>
-            <TextField variant="outlined" ref={nameRef} id="name" label="Name" className="textfield"></TextField>
-            <TextField variant="outlined" ref={emailRef} type="email" id="email" label="Email" className="textfield"></TextField>
+            <h2 className="log__title">Regístrate</h2>
+            <TextField variant="outlined" ref={nameRef} id="name" label="Nombre" className="textfield"></TextField>
+            <TextField variant="outlined" ref={emailRef} type="email" id="email" label="Correo electrónico" className="textfield"></TextField>
             <div className="textfield__container">
-                <TextField variant="outlined" ref={passwordRef} type={passwordVisible ? 'text' :  'password'} id="password" label="Password" className="textfield"></TextField>
+                <TextField variant="outlined" ref={passwordRef} type={passwordVisible ? 'text' :  'password'} id="password" label="Contraseña" className="textfield"></TextField>
                 <IconButton onClick={toggleVisibility} className="textfield__iconEnd">
                     {passwordVisible && <VisibilityOff/>}
                     {!passwordVisible && <Visibility/>}
                 </IconButton>
             </div>                
-            <TextField variant="outlined" ref={passwordConfirmRef} type={passwordVisible ? 'text' : 'password'} id="password-confirm" label="Confirm password" className="textfield"></TextField>
+            <TextField variant="outlined" ref={passwordConfirmRef} type={passwordVisible ? 'text' : 'password'} id="password-confirm" label="Confirmar contraseña" className="textfield"></TextField>
             <div className="log__terms">
                 <Checkbox className="checkbox" id="terms" ref={termsCheckboxRef}/>
-                <label htmlFor="terms" className="checkbox__label">I accept the <span className="underline" onClick={() => setOpenModal(true)}>terms and conditions</span></label>
+                <label htmlFor="terms" className="checkbox__label">Acepto los<span className="underline" onClick={() => setOpenModal(true)}> términos y condiciones</span></label>
             </div>
-            <Button variant="contained" className="btn btn--secondary" type="submit" disabled={loading}>Sign Up</Button>
+            <Button variant="contained" className="btn btn--secondary" type="submit" disabled={loading}>Regístrate</Button>
 
-            <p className="log__navigate">Already have an account? <Link to="/login" className="underline">Log In</Link></p>
+            <p className="log__navigate">¿Ya tienes cuenta? <Link to="/login" className="underline">Inicia sesión</Link></p>
 
             <Dialog open={openModal} onClose={handleCloseModal} scroll="paper" aria-labelledby="scroll-dialog-title" aria-describedby="scroll-dialog-description">
-                <DialogTitle id="scroll-dialog-title">Terms and Conditions</DialogTitle>
+                <DialogTitle id="scroll-dialog-title">Términos y condiciones</DialogTitle>
                 <DialogContent dividers={true}>
                     <DialogContentText id="scroll-dialog-description" tabIndex={-1} className="body">
                         {[...new Array(50)]

@@ -67,12 +67,12 @@ const SlidersStep:FC<ISlidersStep> = ({ setStage, setRegisterInfo, setError, set
                     <IconButton onClick={handlePreviousStage} className="formStep__back">
                         <ArrowBack />
                     </IconButton>
-                    <p>Step 4 out of 4</p>
+                    <p>Paso 5 de 5</p>
                 </header>
-                <h1 className="formStep__title">Almost finished!</h1>
-                <p className="formStep__text">Tell us, in a scale from 1 to 6, how much do you agree with the following affirmations.</p>
+                <h1 className="formStep__title">¡Ya casi terminas!</h1>
+                <p className="formStep__text">Elige qué tan de acuerdo estás, en una escala de 1 a 6, con las siguientes afirmaciones.</p>
 
-                <p className="formStep__label" id="first-slider-label">I have trouble waking up early even if I sleep enough hours</p>
+                <p className="formStep__label" id="first-slider-label">Me cuesta levantarme temprano, incluso si he dormido lo suficiente</p>
                 <Slider 
                     value={wakeValue}
                     min={1}
@@ -84,7 +84,7 @@ const SlidersStep:FC<ISlidersStep> = ({ setStage, setRegisterInfo, setError, set
                     onChange={handleWakeValueChanged}
                 />
 
-                <p className="formStep__label" id="second-slider-label">I enjoy working during the night</p>
+                <p className="formStep__label" id="second-slider-label">Disfruto trabajar durante la noche</p>
                 <Slider 
                     value={nightValue}
                     min={1}
@@ -96,7 +96,7 @@ const SlidersStep:FC<ISlidersStep> = ({ setStage, setRegisterInfo, setError, set
                     onChange={handleNightValueChanged}
                 />
 
-                <p className="formStep__label" id="third-slider-label">At the end of my workday I feel satisfied with the work I’ve done</p>
+                <p className="formStep__label" id="third-slider-label">Al finalizar mi jornada laboral, me siento satisfecho/a con mi trabajo</p>
                 <Slider 
                     value={satisfactionValue}
                     min={1}
@@ -108,7 +108,7 @@ const SlidersStep:FC<ISlidersStep> = ({ setStage, setRegisterInfo, setError, set
                     onChange={handleSatisfactionValueChanged}
                 />
 
-                <Button className="btn btn--secondary" onClick={handleClick}>Continue</Button>
+                <Button className="btn btn--secondary" onClick={handleClick}>Continuar</Button>
             </div>
         </div>
     );

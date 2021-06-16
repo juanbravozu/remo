@@ -333,6 +333,16 @@ p, .body, p.body, button.body {
   color: #CD3737;
 }
 
+.MuiSnackbar-root .MuiAlert-standardSuccess {
+  background-color: #FCF8FB;
+  border: 2px #47D18F solid;
+  border-radius: 7px;
+}
+
+.MuiSnackbar-root .MuiAlert-standardSuccess .MuiAlert-icon {
+  color: #47D18F;
+}
+
 .MuiSnackbar-root .MuiAlert-message {
   font-size: 1.4rem;
   color: inherit;
