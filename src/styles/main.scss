@@ -10,6 +10,7 @@ $white: #FCF8FB;
 @import './components/btn';
 @import './components/textfield';
 @import './components/checkbox';
+@import './components/lateralMenu';
 @import './layouts/material-ui';
 @import './pages/log';
 
@@ -24,4 +25,10 @@ $white: #FCF8FB;
 
 .hidden {
     display: none;
+}
+
+main {
+    padding: $outerPad;
+    background-color: $bgDark;
+    min-height: calc(100vh - 6rem);
 }

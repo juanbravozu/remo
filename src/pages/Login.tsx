@@ -40,7 +40,9 @@ const Login:FC = () => {
 
         login(emailValue, passwordValue)
         .then(() => {
-            history.push('/');
+            setTimeout(() => {
+                history.push('/');
+            }, 500);
         })
         .catch((error:any) => {
             setOpenError(true);

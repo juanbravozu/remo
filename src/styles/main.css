@@ -1,3 +1,7 @@
+.color-error.color-error {
+  color: #CD3737;
+}
+
 @-webkit-keyframes fadeIn {
   0% {
     opacity: 0;
@@ -176,6 +180,10 @@ p, .body, p.body, button.body {
   font-weight: 600;
 }
 
+.btn__icon {
+  margin-right: 2rem;
+}
+
 .textfield__container {
   position: relative;
 }
@@ -205,7 +213,7 @@ p, .body, p.body, button.body {
 
 .textfield.textfield.textfield--time {
   height: 5rem;
-  border: 1px #D1C7CF solid;
+  border: 1px #F4F1F3 solid;
   border-radius: 7px;
   padding-left: 1.5rem;
   margin-top: 0;
@@ -276,7 +284,7 @@ p, .body, p.body, button.body {
 
 .textfield.textfield fieldset {
   height: 5rem;
-  border-color: #D1C7CF;
+  border-color: #F4F1F3;
   border-radius: 7px;
 }
 
@@ -305,12 +313,20 @@ p, .body, p.body, button.body {
   fill: #A65290;
 }
 
+.menu {
+  padding: 4.5rem 3rem;
+}
+
 .MuiFormLabel-root.MuiFormLabel-root, .MuiInputBase-root.MuiInputBase-root {
   font-family: inherit;
 }
 
 .MuiSvgIcon-root.MuiSvgIcon-root {
   font-size: 2rem;
+}
+
+.MuiSvgIcon-root.MuiSvgIcon-fontSizeInherit {
+  font-size: inherit;
 }
 
 .MuiSnackbar-root.MuiSnackbar-root {
@@ -562,5 +578,11 @@ button.formStep__back {
 
 .hidden {
   display: none;
+}
+
+main {
+  padding: 3rem;
+  background-color: #F4F1F3;
+  min-height: calc(100vh - 6rem);
 }
 /*# sourceMappingURL=main.css.map */

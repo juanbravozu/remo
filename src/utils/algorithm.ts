@@ -1,3 +1,10 @@
+export let globalUser:IUser|undefined = undefined;
+
+export function setGlobalUser(user:IUser) {
+    globalUser = user;
+    console.log(globalUser)
+}
+
 interface ITaskSchedule {
     day: number;
     hour: Array<number>;
@@ -19,7 +26,7 @@ interface IRecommendation {
     value: number;
 }
 
-interface IAvailability {
+export interface IAvailability {
     hour: number;
     available: boolean;
 }
@@ -304,11 +311,5 @@ const user1:IUser = {
         }
     ]
 }
-
-const [ userAssignedTasks, pendingTasks ] = filterAndSortTasks(user1.tasks);
-const similitudes = getSimilitude(pendingTasks, 2);
-distributeTasks(user1, pendingTasks, similitudes);
-
-console.log(user1);
 
 export { getSimilitude, distributeTasks, filterAndSortTasks, resetUserWeek, parseDaysToWeek, parseWeekToDays };

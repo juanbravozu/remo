@@ -10,8 +10,12 @@ $warning: #FEE384;
 $interfaceDark: #44223C;
 $interfaceMed: #625059;
 $interfaceLight: #7E7278;
-$bgDark: #D1C7CF;
+$bgDark: #F4F1F3;
 $bgMed: #F1EEF0;
 $bgLight: #FCF8FB;
 
 $outerPad: 3rem;
+
+.color-error.color-error {
+    color: $error;
+}

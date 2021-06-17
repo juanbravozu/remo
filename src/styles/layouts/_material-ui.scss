@@ -6,6 +6,10 @@
     font-size: 2rem;
 }
 
+.MuiSvgIcon-root.MuiSvgIcon-fontSizeInherit {
+    font-size: inherit;
+}
+
 .MuiSnackbar-root{
     &#{&} {
         left: 2rem;
