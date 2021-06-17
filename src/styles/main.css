@@ -202,7 +202,7 @@ p, .body, p.body, button.body {
           transform-origin: left center;
   -webkit-transform: translate(1.4rem, 50%) scale(0.75);
           transform: translate(1.4rem, 50%) scale(0.75);
-  background-color: #FCF8FB;
+  background-color: #ffffff;
 }
 
 .textfield.textfield {
@@ -340,7 +340,7 @@ p, .body, p.body, button.body {
 }
 
 .MuiSnackbar-root .MuiAlert-standardError {
-  background-color: #FCF8FB;
+  background-color: #ffffff;
   border: 2px #CD3737 solid;
   border-radius: 7px;
 }
@@ -350,7 +350,7 @@ p, .body, p.body, button.body {
 }
 
 .MuiSnackbar-root .MuiAlert-standardSuccess {
-  background-color: #FCF8FB;
+  background-color: #ffffff;
   border: 2px #47D18F solid;
   border-radius: 7px;
 }
@@ -402,6 +402,24 @@ span.MuiButton-label {
   left: unset !important;
 }
 
+div[class|="VerticalAppointment"] {
+  color: #752462;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.6rem;
+}
+
+span.Label-text-35 {
+  font-size: 1.2rem;
+  font-family: "Poppins", sans-serif;
+  color: #7E7278;
+}
+
+div.Root-container-1 {
+  overflow: hidden;
+  background-color: #ffffff;
+  border-radius: 7px;
+}
+
 .log {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -430,7 +448,7 @@ span.MuiButton-label {
 .log__form {
   width: 100vw;
   padding: 3rem;
-  background-color: #FCF8FB;
+  background-color: #ffffff;
   border-radius: 20px 20px 0 0;
   -webkit-animation-name: slideInFromBottom, fadeIn;
           animation-name: slideInFromBottom, fadeIn;
@@ -497,7 +515,7 @@ span.MuiButton-label {
   width: 100%;
   min-height: 100vh;
   padding: 10rem 3rem;
-  background-color: #FCF8FB;
+  background-color: #ffffff;
   overflow-x: hidden;
 }
 

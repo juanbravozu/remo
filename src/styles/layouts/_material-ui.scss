@@ -85,3 +85,21 @@ span.MuiButton-label {
         left: unset !important;
     }
 }
+
+div[class|="VerticalAppointment"] {
+    color: $primaryDark;
+    font-family: $poppins;
+    font-size: 1.6rem;
+}
+
+span.Label-text-35 {
+    font-size: 1.2rem;
+    font-family: $poppins;
+    color: $interfaceLight;
+}
+
+div.Root-container-1 {
+    overflow: hidden;
+    background-color: $bgLight;
+    border-radius: 7px;
+}
