@@ -171,6 +171,18 @@ p, .body, p.body, button.body {
   padding: 0;
 }
 
+.btn.btn--rounded {
+  width: 6.5rem;
+  height: 6.5rem;
+  border-radius: 3.5rem;
+}
+
+.btn.btn--addTask {
+  position: fixed;
+  right: 3rem;
+  bottom: 3rem;
+}
+
 .btn__grouped {
   width: 33%;
   height: 4rem;
@@ -186,6 +198,11 @@ p, .body, p.body, button.body {
 
 .textfield__container {
   position: relative;
+}
+
+.textfield__wrapper {
+  position: relative;
+  margin: 2.5rem 0;
 }
 
 .textfield__label {
@@ -213,7 +230,7 @@ p, .body, p.body, button.body {
 
 .textfield.textfield.textfield--time {
   height: 5rem;
-  border: 1px #F4F1F3 solid;
+  border: 1px #A65290 solid;
   border-radius: 7px;
   padding-left: 1.5rem;
   margin-top: 0;
@@ -304,6 +321,23 @@ p, .body, p.body, button.body {
           transform: translateY(-50%);
 }
 
+.textfield.textfield--number {
+  margin: 0;
+}
+
+button.textfield__numberBtn {
+  position: absolute;
+  top: 0;
+}
+
+button.textfield__less {
+  left: 1rem;
+}
+
+button.textfield__more {
+  right: 1rem;
+}
+
 .checkbox__label {
   vertical-align: middle;
   color: #752462;
@@ -315,6 +349,93 @@ p, .body, p.body, button.body {
 
 .menu {
   padding: 4.5rem 3rem;
+}
+
+.nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 6rem;
+  padding-right: 3rem;
+}
+
+div .taskCreation {
+  width: 100%;
+  height: 100%;
+  padding: 1.6rem;
+  border-radius: 20px;
+}
+
+div .taskCreation__banner {
+  position: relative;
+  border-radius: 16px;
+  padding: 2rem;
+  padding-top: 7rem;
+  background-color: #A65290;
+}
+
+div .taskCreation__title {
+  width: 100%;
+  color: #ffffff;
+  padding: 0.4rem;
+  padding-top: 0.8rem;
+  border: none;
+  background: none;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 2rem;
+}
+
+div .taskCreation__title::-webkit-input-placeholder {
+  color: #ffffff;
+  opacity: 0.6;
+}
+
+div .taskCreation__title:-ms-input-placeholder {
+  color: #ffffff;
+  opacity: 0.6;
+}
+
+div .taskCreation__title::-ms-input-placeholder {
+  color: #ffffff;
+  opacity: 0.6;
+}
+
+div .taskCreation__title::placeholder {
+  color: #ffffff;
+  opacity: 0.6;
+}
+
+div .taskCreation__title:focus {
+  outline: none;
+  background-color: rgba(117, 36, 98, 0.5);
+}
+
+div .taskCreation__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+div .taskCreation__label {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1.6rem;
+  color: #44223C;
+  margin: 0 1rem;
+}
+
+div .taskCreation__content {
+  padding: 2rem 0;
+}
+
+div .taskCreation__difficulty {
+  margin: 1rem 0;
+  margin-bottom: 2rem;
 }
 
 .MuiFormLabel-root.MuiFormLabel-root, .MuiInputBase-root.MuiInputBase-root {
@@ -403,7 +524,7 @@ span.MuiButton-label {
 }
 
 div[class|="VerticalAppointment"] {
-  color: #752462;
+  color: #44223C;
   font-family: "Poppins", sans-serif;
   font-size: 1.6rem;
 }
@@ -418,6 +539,23 @@ div.Root-container-1 {
   overflow: hidden;
   background-color: #ffffff;
   border-radius: 7px;
+  margin-top: 2rem;
+}
+
+p[class|="Cell-dayOfWeek"] {
+  text-transform: capitalize;
+  font-size: 1.6rem;
+}
+
+div.makeStyles-dayScaleEmptyCell-131, div.makeStyles-dayScaleEmptyCell-16 {
+  display: none;
+}
+
+.makeStyles-background-14.makeStyles-inlineFlex-13.makeStyles-ordinaryHeaderBorder-8,
+td.MuiTableCell-root.MuiTableCell-body.TickCell-cell-38,
+td.MuiTableCell-root.MuiTableCell-body.makeStyles-cell-43,
+.makeStyles-flexRow-11.makeStyles-stickyElement-3.makeStyles-leftPanel-5.makeStyles-ordinaryLeftPanelBorder-6 {
+  border-color: #F4F1F3;
 }
 
 .log {
@@ -602,5 +740,9 @@ main {
   padding: 3rem;
   background-color: #F4F1F3;
   min-height: calc(100vh - 6rem);
+}
+
+main > * {
+  max-width: 1400px;
 }
 /*# sourceMappingURL=main.css.map */

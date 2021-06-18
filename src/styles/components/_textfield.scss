@@ -3,6 +3,11 @@
         position: relative;
     }
 
+    &__wrapper {
+        position: relative;
+        margin: 2.5rem 0;
+    }
+
     &__label {
         position: relative;
         z-index: 2;
@@ -23,7 +28,7 @@
 
         &.textfield--time {
             height: 5rem;
-            border: 1px $bgDark solid;
+            border: 1px $primary solid;
             border-radius: 7px;
             padding-left: 1.5rem;
             margin-top: 0;
@@ -109,5 +114,24 @@
             top: 50%;
             transform: translateY(-50%);
         }
+
+        &--number {
+            margin: 0;
+        }
+    }
+}
+
+button.textfield {
+    &__numberBtn {
+        position: absolute;
+        top: 0;
+    }
+
+    &__less {
+        left: 1rem;
+    }
+
+    &__more {
+        right: 1rem;
     }
 }

@@ -1,4 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import { esES } from '@material-ui/core/locale';
 
 const theme = createMuiTheme({
     palette: {
@@ -17,6 +18,6 @@ const theme = createMuiTheme({
         fontFamily: "'Montserrat', sans-serif",
         htmlFontSize: 10
     }
-});
+}, esES);
 
 export default theme;

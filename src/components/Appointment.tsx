@@ -9,11 +9,12 @@ const Appointment:FC<any> = ({children, style, data, resources, ...props}) => {
             style={{
                 ...style,
                 backgroundColor: '#FFFFFF',
-                borderLeft: '8px solid #A65290',
+                borderLeft: `8px solid ${data.color}`,
                 width: '96%',
                 left: '2%',
                 boxShadow: '2px 5px 15px -5px rgb(0 0 0 / 20%)',
-                borderRadius: '1rem'
+                borderRadius: '1rem',
+                paddingLeft: '0.5rem'
             }}
             draggable={true}
             data={data}

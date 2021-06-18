@@ -17,5 +17,5 @@ export const auth = app.auth();
 export const db = app.firestore();
 export type userData = {
   name: string,
-  email: string, 
+  email: string
 }

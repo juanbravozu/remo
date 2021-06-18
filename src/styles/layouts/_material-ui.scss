@@ -87,7 +87,7 @@ span.MuiButton-label {
 }
 
 div[class|="VerticalAppointment"] {
-    color: $primaryDark;
+    color: $interfaceDark;
     font-family: $poppins;
     font-size: 1.6rem;
 }
@@ -102,4 +102,21 @@ div.Root-container-1 {
     overflow: hidden;
     background-color: $bgLight;
     border-radius: 7px;
+    margin-top: 2rem;
+}
+
+p[class|="Cell-dayOfWeek"] {
+    text-transform: capitalize;
+    font-size: 1.6rem;
+}
+
+div.makeStyles-dayScaleEmptyCell-131, div.makeStyles-dayScaleEmptyCell-16 {
+    display: none;
+}
+
+.makeStyles-background-14.makeStyles-inlineFlex-13.makeStyles-ordinaryHeaderBorder-8, 
+td.MuiTableCell-root.MuiTableCell-body.TickCell-cell-38, 
+td.MuiTableCell-root.MuiTableCell-body.makeStyles-cell-43,
+.makeStyles-flexRow-11.makeStyles-stickyElement-3.makeStyles-leftPanel-5.makeStyles-ordinaryLeftPanelBorder-6 {
+    border-color: $bgDark;
 }

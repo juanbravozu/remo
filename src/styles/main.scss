@@ -11,6 +11,8 @@ $white: #FCF8FB;
 @import './components/textfield';
 @import './components/checkbox';
 @import './components/lateralMenu';
+@import './components/nav';
+@import './components/taskCreation';
 @import './layouts/material-ui';
 @import './pages/log';
 
@@ -31,4 +33,8 @@ main {
     padding: $outerPad;
     background-color: $bgDark;
     min-height: calc(100vh - 6rem);
+
+    > * {
+        max-width: 1400px;
+    }
 }

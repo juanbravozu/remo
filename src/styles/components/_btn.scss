@@ -40,6 +40,18 @@
             max-width: none;
             padding: 0;
         }
+
+        &--rounded {
+            width: 6.5rem;
+            height: 6.5rem;
+            border-radius: 3.5rem;
+        }
+
+        &--addTask {
+            position: fixed;
+            right: $outerPad;
+            bottom: $outerPad;
+        }
     }   
     
     &__grouped {
