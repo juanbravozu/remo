@@ -13,18 +13,14 @@ import Appointment from "../components/Appointment";
 import { AppointmentTooltipContent, AppointmentTooltipHeader } from "../components/AppointmentTooltip";
 import TaskCreationForm from "../components/TaskCreationForm";
 
-const taskExampleData = [
-    {startDate: '2021-06-17T09:45', endDate: '2021-06-17T11:45', title: 'Holi', color: 'purple'},
-    {startDate: '2021-06-17T14:45', endDate: '2021-06-17T16:45', title: 'Tarea con un nombre innecesariamente largo pero es para probar', color: 'red'}
-]
-
 const Dashboard:FC = () => {
 
     const [ openMenu, setOpenMenu ] = useState<boolean>(false);
     const { currentUser } = useAuth()!;
     const [ name, setName ] = useState<string>('');
-    const [ tasks, setTasks ] = useState();
+    const [ tasks, setTasks ] = useState<any[]>([]);
     const [ openTaskCreation, setOpenTaskCreation ] = useState<boolean>(false);
+    const [ taskCreated, setTaskCreated ] = useState<boolean>(true);
     const { logout } = useAuth()!;
     const history = useHistory();
     const [ currentDate, setCurrentDate ] = useState(new Date());
@@ -48,9 +44,28 @@ const Dashboard:FC = () => {
             parseDaysToWeek([data.data()!.day1, data.data()!.day2, data.data()!.day3, data.data()!.day4, data.data()!.day5, data.data()!.day6, data.data()!.day0] as Array<Array<IAvailability>>, myUser)
             setGlobalUser(myUser); */
             setName(data.data()!.name as string);
-            setTasks(data.data()!.tasks);
+            const manualTasks:any[] = [];
+            db.collection('users').doc(currentUser.uid).collection('tasks').get()
+            .then(query => {
+                query.forEach(task => {
+                    console.log(new Date(task.data().schedule[0].day))
+                    if(task.data().manual) {
+                        const taskData = task.data();
+                        const formatedTask = {
+                            title: taskData.name,
+                            startDate: new Date(taskData.schedule[0].day).setHours(taskData.schedule[0].start),
+                            endDate: new Date(taskData.schedule[0].day).setHours(taskData.schedule[0].end),
+                            color: taskData.difficulty === 0 ? '#67C6DA' : taskData.difficulty === 1 ? '#9A6DAD' : '#F9805B',
+                        }
+                        console.log(formatedTask)
+                        manualTasks.push(formatedTask);
+                    }
+                });
+
+                setTasks(manualTasks);
+            })
         });
-    }, [])
+    }, [taskCreated])
     
 
     function handleLogOut() {
@@ -75,7 +90,7 @@ const Dashboard:FC = () => {
         </header>
 
         <main>
-            <Scheduler data={taskExampleData} firstDayOfWeek={1} locale="es">
+            <Scheduler data={tasks} firstDayOfWeek={1} locale="es">
                 <ViewState currentDate={currentDate}/>
                 <DayView startDayHour={4} endDayHour={24} cellDuration={60}/>
                 <Appointments appointmentComponent={Appointment}/>
@@ -88,7 +103,7 @@ const Dashboard:FC = () => {
                 <AddIcon style={{fontSize: '2.8rem', verticalAlign: 'middle', marginLeft: '-0.1rem'}}/>
             </Button>
 
-            <TaskCreationForm open={openTaskCreation} setOpen={setOpenTaskCreation}/>
+            <TaskCreationForm open={openTaskCreation} setOpen={setOpenTaskCreation} taskCreated={taskCreated} setTaskCreated={setTaskCreated}/>
         </main>
         <Drawer PaperProps={{classes: {root: "menu"}}} anchor="left" open={openMenu} onClose={() => setOpenMenu(false)} style={openMenu ? {} : {transition: 'opacity 0.3s ease-out', opacity: 0, pointerEvents: 'none'}}>
             <div>

@@ -18,11 +18,13 @@ import React from "react";
 interface ITaskCreationForm {
     open: boolean,
     setOpen: (value:boolean) => void,
+    taskCreated: boolean,
+    setTaskCreated: (value:any) => void
 }
 
 enum Difficulty {Easy, Medium, Hard};
 
-const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen}) => {
+const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen, taskCreated, setTaskCreated}) => {
 
     const [ taskName, setTaskName ] = useState<string>('');
     const [ taskDifficulty, setTaskDifficulty ] = useState<number>(-1);
@@ -98,6 +100,7 @@ const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen}) => {
         db.collection('users').doc(currentUser.uid).collection('tasks').doc(id).set(newTask)
         .then(() => {
             resetValues();
+            setTaskCreated((prev:boolean) => !prev);
             setOpen(false);
         })
     }
@@ -178,7 +181,7 @@ const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen}) => {
             weekend: weekend,
             manual: true,
             schedule: [{
-                day: assignation,
+                day: assignation.toString(),
                 start: assignation.getHours(),
                 end: assignation.getHours() + length
             }]
@@ -189,6 +192,7 @@ const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen}) => {
         .then(() => {
             resetValues();
             setOpen(false);
+            setTaskCreated((prev:boolean) => !prev);
         });
     }
 
