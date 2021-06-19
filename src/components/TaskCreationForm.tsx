@@ -18,13 +18,13 @@ import React from "react";
 interface ITaskCreationForm {
     open: boolean,
     setOpen: (value:boolean) => void,
-    taskCreated: boolean,
-    setTaskCreated: (value:any) => void
+    tasks: any,
+    setTasks: (value:any) => void
 }
 
 enum Difficulty {Easy, Medium, Hard};
 
-const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen, taskCreated, setTaskCreated}) => {
+const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen, tasks, setTasks}) => {
 
     const [ taskName, setTaskName ] = useState<string>('');
     const [ taskDifficulty, setTaskDifficulty ] = useState<number>(-1);
@@ -51,6 +51,7 @@ const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen, taskCreated, set
     }
 
     function handleClose() {
+        setManual(false);
         setOpen(false);
     }
 
@@ -69,20 +70,6 @@ const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen, taskCreated, set
     function handleTaskCreation() {
 
         if(!checkValidity()) return;
-        
-        switch(taskDifficulty) {
-            case Difficulty.Easy:
-                setTaskDifficulty(1)
-                break;
-
-            case Difficulty.Medium:
-                setTaskDifficulty(3)
-                break;
-
-            case Difficulty.Hard:
-                setTaskDifficulty(5);
-                break;
-        }
 
         const id = uuid()
         const newTask = {
@@ -91,16 +78,30 @@ const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen, taskCreated, set
             difficulty: taskDifficulty,
             duration: length,
             assigned: 0,
+            manual: false,
             deadline: deadline,
             weekend: weekend,
             schedule: []
         }
 
+        switch(taskDifficulty) {
+            case Difficulty.Easy:
+                newTask.difficulty = 1;
+                break;
+
+            case Difficulty.Medium:
+                newTask.difficulty = 3;
+                break;
+
+            case Difficulty.Hard:
+                newTask.difficulty = 5;;
+                break;
+        }
         
         db.collection('users').doc(currentUser.uid).collection('tasks').doc(id).set(newTask)
         .then(() => {
             resetValues();
-            setTaskCreated((prev:boolean) => !prev);
+            setTasks((prev:any) => [...prev, newTask]);
             setOpen(false);
         })
     }
@@ -145,6 +146,7 @@ const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen, taskCreated, set
         setWeekend(false);
         setError('');
         setAssignation(new Date());
+        setManual(false);
     }
 
     function handleConfirmAssigments() {
@@ -154,20 +156,6 @@ const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen, taskCreated, set
 
         if(assignation < new Date()){ 
             return setError('No puedes viajar al pasado... Escoge una fecha que no haya ocurrido :)');
-        }
-
-        switch(taskDifficulty) {
-            case Difficulty.Easy:
-                setTaskDifficulty(1)
-                break;
-
-            case Difficulty.Medium:
-                setTaskDifficulty(3)
-                break;
-
-            case Difficulty.Hard:
-                setTaskDifficulty(5);
-                break;
         }
 
         const id = uuid()
@@ -181,18 +169,32 @@ const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen, taskCreated, set
             weekend: weekend,
             manual: true,
             schedule: [{
-                day: assignation.toString(),
+                day: assignation.getTime(),
                 start: assignation.getHours(),
                 end: assignation.getHours() + length
             }]
+        }
+
+        switch(taskDifficulty) {
+            case Difficulty.Easy:
+                newTask.difficulty = 1;
+                break;
+
+            case Difficulty.Medium:
+                newTask.difficulty = 3;
+                break;
+
+            case Difficulty.Hard:
+                newTask.difficulty = 5;;
+                break;
         }
 
         
         db.collection('users').doc(currentUser.uid).collection('tasks').doc(id).set(newTask)
         .then(() => {
             resetValues();
+            setTasks((prev:any) => [...prev, newTask]);
             setOpen(false);
-            setTaskCreated((prev:boolean) => !prev);
         });
     }
 

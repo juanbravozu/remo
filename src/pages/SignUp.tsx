@@ -12,7 +12,6 @@ import LunchStep from "../components/registerFormSteps/LunchStep";
 import ProductivityStep from "../components/registerFormSteps/ProductivityStep";
 import SlidersStep from "../components/registerFormSteps/SlidersStep";
 import WorkdayStep from "../components/registerFormSteps/WorkdayStep";
-import { IUser, parseWeekToDays, resetUserWeek } from "../utils/algorithm";
 
 
 export interface IRegisterInfo {
@@ -103,7 +102,7 @@ const SignUp:FC = () => {
 
     useEffect(() => {
         if(stage === Stage.Afirmations && registerInfo!.satisfaction) {
-            const userUpload:IUser = {
+            const userUpload = {
                 name: registerInfo!.name,
                 email: registerInfo!.email,
                 uid: registerInfo!.uid,
@@ -114,12 +113,7 @@ const SignUp:FC = () => {
                 satisfaction: registerInfo!.satisfaction,
                 tasks: []
             }
-
-            resetUserWeek(userUpload);
-            parseWeekToDays(userUpload.currentWeek!, userUpload);
-            delete userUpload.currentWeek;
     
-            console.log('From complete', userUpload);
             db.collection('users').doc(userUpload.uid).set(userUpload)
             .then(() => {
                 history.push('/');
