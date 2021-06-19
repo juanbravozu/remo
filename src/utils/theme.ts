@@ -4,18 +4,18 @@ import { esES } from '@material-ui/core/locale';
 const theme = createMuiTheme({
     palette: {
         primary: {
-            light: '#D981C0',
+            light: '#9E51BF',
             main: '#A65290',
             dark: '#752462',
-            contrastText: '#FCF8FB'
+            contrastText: '#FFFFFF'
         },
         secondary: {
-            main: '#FEBE9A',
-            contrastText: '#44223C'
+            main: '#FF777B',
+            contrastText: '#FFFFFF'
         }
     },
     typography: {
-        fontFamily: "'Montserrat', sans-serif",
+        fontFamily: "'Poppins', sans-serif",
         htmlFontSize: 10
     }
 }, esES);

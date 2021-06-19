@@ -81,7 +81,7 @@ const Login:FC = () => {
                     </IconButton>
                 </div>           
                 <Link to="/forgotPassword" className="log__forgotPassword">¿Olvidaste tu contraseña?</Link>     
-                <Button variant="contained" className="btn btn--primary" type="submit">Iniciar sesión</Button>
+                <Button variant="contained" className="btn btn--secondary" type="submit">Iniciar sesión</Button>
 
                 
                 <p className="log__navigate">¿No tienes cuenta? <Link to="/signup" className="underline">Regístrate</Link></p>

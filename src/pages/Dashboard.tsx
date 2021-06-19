@@ -6,61 +6,73 @@ import { Button, Drawer, IconButton } from "@material-ui/core";
 import { ExitToApp } from "@material-ui/icons";
 import MenuIcon from "@material-ui/icons/Menu";
 import AddIcon from '@material-ui/icons/Add';
-import { ViewState } from "@devexpress/dx-react-scheduler";
-import { Appointments, AppointmentTooltip, DayView, Scheduler, WeekView } from "@devexpress/dx-react-scheduler-material-ui";
-import Appointment from "../components/Appointment";
-import { AppointmentTooltipContent, AppointmentTooltipHeader } from "../components/AppointmentTooltip";
 import TaskCreationForm from "../components/TaskCreationForm";
+import { assignTime } from "../utils/algorithm";
+import ScheduleView from "../components/ScheduleView";
 
 const Dashboard:FC = () => {
 
     const [ openMenu, setOpenMenu ] = useState<boolean>(false);
     const { currentUser } = useAuth()!;
+    const [ userData, setUserData ] = useState<any>({});
     const [ name, setName ] = useState<string>('');
     const [ tasks, setTasks ] = useState<any[]>([]);
     const [ displayTasks, setdisplayTasks ] = useState<any[]>([]);
     const [ openTaskCreation, setOpenTaskCreation ] = useState<boolean>(false);
     const { logout } = useAuth()!;
     const history = useHistory();
-    const [ currentDate, setCurrentDate ] = useState(new Date());
 
     useEffect(() => {
         db.collection('users').doc(currentUser.uid).get()
-        .then(data => {
-            if(!(data.data()!.profile)) return history.push('/signup');
-
-            setName(data.data()!.name as string);
-            db.collection('users').doc(currentUser.uid).collection('tasks').get()
-            .then(query => {
-                const tasksFromDb:any[] = []
-                query.forEach(task => {
-                    tasksFromDb.push(task.data());
-                });
-
-                setTasks(tasksFromDb);
-            })
+        .then(userData => {
+            setUserData(userData.data());
+            db.collection('users').doc(currentUser.uid).get()
+            .then(data => {
+                if(!(data.data()!.profile)) return history.push('/signup');
+    
+                setName(data.data()!.name as string);
+                db.collection('users').doc(currentUser.uid).collection('tasks').get()
+                .then(query => {
+                    const tasksFromDb:any[] = []
+                    query.forEach(task => {
+                        tasksFromDb.push(task.data());
+                    });
+    
+                    setTasks(tasksFromDb);
+                })
+            });
         });
+
+        const now = new Date();
+        const timeout = new Date();
+        timeout.setHours(21, 44, 0, 0);
+    
+        console.log(timeout.getTime(), now.getTime(), timeout.getTime() - now.getTime())
+        setTimeout(() => console.log('Son las 9:40'), timeout.getTime() - now.getTime());
     }, []);
     
     useEffect(() => {
         const formattedTasks:any[] = [];
 
-        tasks.forEach(task => {
+        assignTime(tasks, userData.profile, userData);
 
+        tasks.forEach(task => {
             if(task.schedule.length > 0) {
+                db.collection('users').doc(currentUser.uid).collection('tasks').doc(task.id).set(task);
 
                 task.schedule.forEach((assignation: any, index: number) => {
                     const formatedTask = {
                         title: task.name,
                         startDate: new Date(task.schedule[index].day).setHours(task.schedule[index].start),
                         endDate: new Date(task.schedule[index].day).setHours(task.schedule[index].end-1, 59, 0, 0),
-                        color: task.difficulty === 1 ? '#67C6DA' : task.difficulty === 3 ? '#9A6DAD' : '#F9805B',
+                        color: task.difficulty === 1 ? '#67C6DA' : task.difficulty === 3 ? '#8D6BD7' : '#FF777B',
+                        textColor: task.difficulty === 1 ? '#67C6DA' : task.difficulty === 3 ? '#8D6BD7' : '#FF777B',
+                        bgColor: task.difficulty === 1 ? '#F6FDFE' : task.difficulty === 3 ? '#F9F7FD' : '#FFF5F5'
                     }
                     formattedTasks.push(formatedTask);
                 });
                 
             }
-            console.log(formattedTasks);
         });       
 
         setdisplayTasks(formattedTasks);
@@ -78,6 +90,8 @@ const Dashboard:FC = () => {
         setOpenTaskCreation(true);
     }
 
+
+
     return (
     <React.Fragment>
         <header className="nav">
@@ -89,12 +103,7 @@ const Dashboard:FC = () => {
         </header>
 
         <main>
-            <Scheduler data={displayTasks} firstDayOfWeek={1} locale="es">
-                <ViewState currentDate={currentDate}/>
-                <DayView startDayHour={4} endDayHour={24} cellDuration={60}/>
-                <Appointments appointmentComponent={Appointment}/>
-                <AppointmentTooltip headerComponent={AppointmentTooltipHeader} contentComponent={AppointmentTooltipContent}/>
-            </Scheduler>
+            <ScheduleView displayTasks={displayTasks} />
 
             <Button variant="contained" color="primary" style={{fontSize: "2.8rem"}} className="btn btn--primary btn--rounded btn--addTask" 
                 onClick={handleOpenTaskCreation}

@@ -87,9 +87,13 @@ span.MuiButton-label {
 }
 
 div[class|="VerticalAppointment"] {
-    color: $interfaceDark;
+    color: inherit;
     font-family: $poppins;
     font-size: 1.6rem;
+}
+
+div[class|="VerticalAppointment-title"] {
+    font-family: $josefin;
 }
 
 span.Label-text-35 {
@@ -110,13 +114,28 @@ p[class|="Cell-dayOfWeek"] {
     font-size: 1.6rem;
 }
 
-div.makeStyles-dayScaleEmptyCell-131, div.makeStyles-dayScaleEmptyCell-16 {
-    display: none;
-}
-
-.makeStyles-background-14.makeStyles-inlineFlex-13.makeStyles-ordinaryHeaderBorder-8, 
+div.makeStyles-leftPanel-5, .makeStyles-background-14.makeStyles-inlineFlex-13.makeStyles-ordinaryHeaderBorder-8, 
 td.MuiTableCell-root.MuiTableCell-body.TickCell-cell-38, 
 td.MuiTableCell-root.MuiTableCell-body.makeStyles-cell-43,
 .makeStyles-flexRow-11.makeStyles-stickyElement-3.makeStyles-leftPanel-5.makeStyles-ordinaryLeftPanelBorder-6 {
     border-color: $bgDark;
+}
+
+.makeStyles-cell-43, .Cell-cell-21 {
+    @media (max-width: 836px) {
+        width: 100px;
+    }
+}
+
+td.Cell-cell-21 {
+    padding: 2rem 1rem;
+
+    p, div {
+        font-weight: 600;
+        color: $bgBigDark;
+
+        &.Cell-highlightedText-24 {
+            color: $primary;
+        }
+    }
 }

@@ -130,7 +130,6 @@ function iterateProd(prodArray:Array<any>, task:ITask, user:any, tasks:Array<ITa
 function assignTime(tasks:Array<ITask>, profile:number, user:any) {
 
     const sortedTasks = filterAndSortTasks(tasks);
-    console.log(sortedTasks)
     sortedTasks.forEach((task) => {
         if(!task.manual) {
             const prod5:any[] = [];

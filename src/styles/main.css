@@ -146,7 +146,7 @@ p, .body, p.body, button.body {
 }
 
 .btn.btn--primary {
-  background-color: #A65290;
+  background-color: #9E51BF;
 }
 
 .btn.btn--primary span {
@@ -158,12 +158,16 @@ p, .body, p.body, button.body {
 }
 
 .btn.btn--secondary {
-  background-color: #FEBE9A;
-  color: #752462;
+  background-color: #FF777B;
+  color: #ffffff;
 }
 
 .btn.btn--secondary:hover {
-  background-color: #F6A06F;
+  background-color: #e26468;
+}
+
+.btn.btn--secondary .MuiButton-label {
+  color: #ffffff;
 }
 
 .btn.btn--group {
@@ -181,6 +185,32 @@ p, .body, p.body, button.body {
   position: fixed;
   right: 3rem;
   bottom: 3rem;
+}
+
+.btn.btn--schedule {
+  border-radius: 8px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  height: 30px;
+  min-height: 30px;
+  padding: 0;
+}
+
+.btn.btn--schedule:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.btn.btn--noBg {
+  background: none;
+}
+
+.btn.btn--noBg:hover {
+  background: #F4F1F3;
+}
+
+.btn.btn--noBg .MuiButton-label {
+  color: #44223C;
 }
 
 .btn__grouped {
@@ -230,16 +260,16 @@ p, .body, p.body, button.body {
 
 .textfield.textfield.textfield--time {
   height: 5rem;
-  border: 1px #A65290 solid;
+  border: 1px #9E51BF solid;
   border-radius: 7px;
   padding-left: 1.5rem;
   margin-top: 0;
 }
 
 .textfield.textfield.textfield--time:focus-within {
-  background-color: rgba(166, 82, 144, 0.05);
+  background-color: rgba(158, 81, 191, 0.05);
   border-width: 2px;
-  border-color: #A65290;
+  border-color: #9E51BF;
 }
 
 .textfield.textfield.textfield--time:focus-within input {
@@ -247,7 +277,7 @@ p, .body, p.body, button.body {
 }
 
 .textfield.textfield.textfield--time:hover {
-  border-color: #A65290;
+  border-color: #9E51BF;
 }
 
 .textfield.textfield.textfield--time input {
@@ -277,12 +307,12 @@ p, .body, p.body, button.body {
 }
 
 .textfield.textfield .Mui-focused fieldset {
-  border-color: #A65290;
+  border-color: #9E51BF;
 }
 
 .textfield.textfield .Mui-focused input {
   color: #44223C;
-  background-color: rgba(166, 82, 144, 0.05);
+  background-color: rgba(158, 81, 191, 0.05);
 }
 
 .textfield.textfield .MuiFormLabel-filled {
@@ -290,7 +320,7 @@ p, .body, p.body, button.body {
 }
 
 .textfield.textfield .MuiFormLabel-filled + div fieldset {
-  border-color: #A65290;
+  border-color: #9E51BF;
 }
 
 .textfield.textfield input {
@@ -306,7 +336,7 @@ p, .body, p.body, button.body {
 }
 
 .textfield.textfield div:hover fieldset {
-  border-color: #A65290;
+  border-color: #9E51BF;
 }
 
 .textfield.textfield span {
@@ -344,7 +374,7 @@ button.textfield__more {
 }
 
 .checkbox.checkbox svg {
-  fill: #A65290;
+  fill: #9E51BF;
 }
 
 .menu {
@@ -377,7 +407,7 @@ div .taskCreation__banner {
   border-radius: 16px;
   padding: 2rem;
   padding-top: 7rem;
-  background-color: #A65290;
+  background-color: #9E51BF;
 }
 
 div .taskCreation__title {
@@ -492,8 +522,8 @@ div .taskCreation__difficulty {
 }
 
 div.MuiToolbar-root, div.MuiPickersClock-pin, div.MuiPickersClockPointer-pointer, div.MuiPickersClockPointer-thumb {
-  background-color: #A65290;
-  border-color: #A65290;
+  background-color: #9E51BF;
+  border-color: #9E51BF;
 }
 
 .MuiFormHelperText-root.MuiFormHelperText-root, .MuiPickersClockNumber-clockNumber.MuiPickersClockNumber-clockNumber {
@@ -524,9 +554,13 @@ span.MuiButton-label {
 }
 
 div[class|="VerticalAppointment"] {
-  color: #44223C;
+  color: inherit;
   font-family: "Poppins", sans-serif;
   font-size: 1.6rem;
+}
+
+div[class|="VerticalAppointment-title"] {
+  font-family: "Josefin Sans", sans-serif;
 }
 
 span.Label-text-35 {
@@ -547,15 +581,30 @@ p[class|="Cell-dayOfWeek"] {
   font-size: 1.6rem;
 }
 
-div.makeStyles-dayScaleEmptyCell-131, div.makeStyles-dayScaleEmptyCell-16 {
-  display: none;
-}
-
-.makeStyles-background-14.makeStyles-inlineFlex-13.makeStyles-ordinaryHeaderBorder-8,
+div.makeStyles-leftPanel-5, .makeStyles-background-14.makeStyles-inlineFlex-13.makeStyles-ordinaryHeaderBorder-8,
 td.MuiTableCell-root.MuiTableCell-body.TickCell-cell-38,
 td.MuiTableCell-root.MuiTableCell-body.makeStyles-cell-43,
 .makeStyles-flexRow-11.makeStyles-stickyElement-3.makeStyles-leftPanel-5.makeStyles-ordinaryLeftPanelBorder-6 {
   border-color: #F4F1F3;
+}
+
+@media (max-width: 836px) {
+  .makeStyles-cell-43, .Cell-cell-21 {
+    width: 100px;
+  }
+}
+
+td.Cell-cell-21 {
+  padding: 2rem 1rem;
+}
+
+td.Cell-cell-21 p, td.Cell-cell-21 div {
+  font-weight: 600;
+  color: #DDD5DB;
+}
+
+td.Cell-cell-21 p.Cell-highlightedText-24, td.Cell-cell-21 div.Cell-highlightedText-24 {
+  color: #9E51BF;
 }
 
 .log {
@@ -573,7 +622,7 @@ td.MuiTableCell-root.MuiTableCell-body.makeStyles-cell-43,
       -ms-flex-pack: justify;
           justify-content: space-between;
   min-height: 100vh;
-  background-color: #A65290;
+  background-color: #9E51BF;
   background-image: url("../assets/log-bg.svg");
   background-position-x: -20px;
   background-position-y: -50px;
@@ -715,7 +764,7 @@ td.MuiTableCell-root.MuiTableCell-body.makeStyles-cell-43,
 
 button.formStep__back {
   position: absolute;
-  color: #A65290;
+  color: #9E51BF;
   left: 3rem;
 }
 

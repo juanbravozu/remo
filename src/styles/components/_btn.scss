@@ -29,10 +29,14 @@
     
         &--secondary {
             background-color: $secondary;
-            color: $primaryDark;
+            color: $bgLight;
 
             &:hover {
                 background-color: $secondaryDark;
+            }
+
+            .MuiButton-label {
+                color: $bgLight;
             }
         }
 
@@ -51,6 +55,30 @@
             position: fixed;
             right: $outerPad;
             bottom: $outerPad;
+        }
+
+        &--schedule {
+            border-radius: 8px;
+            box-shadow: none;
+            height: 30px;
+            min-height: 30px;
+            padding: 0;
+
+            &:hover {
+                box-shadow: none;
+            }
+        }
+
+        &--noBg {
+            background: none;
+
+            &:hover {
+                background: $bgDark;
+            }
+
+            .MuiButton-label {
+                color: $interfaceDark;
+            }
         }
     }   
     

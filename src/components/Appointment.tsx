@@ -8,8 +8,9 @@ const Appointment:FC<any> = ({children, style, data, resources, ...props}) => {
             {...props} 
             style={{
                 ...style,
-                backgroundColor: '#FFFFFF',
+                backgroundColor: data.bgColor,
                 borderLeft: `8px solid ${data.color}`,
+                color: data.textColor,
                 width: '96%',
                 left: '2%',
                 boxShadow: '2px 5px 15px -5px rgb(0 0 0 / 20%)',
