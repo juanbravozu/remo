@@ -154,7 +154,7 @@ p, .body, p.body, button.body {
 }
 
 .btn.btn--primary:hover {
-  background-color: #752462;
+  background-color: #7E3A8B;
 }
 
 .btn.btn--secondary {
@@ -243,7 +243,7 @@ p, .body, p.body, button.body {
   width: fit-content;
   padding: 0 0.5rem;
   margin-top: 2rem;
-  color: #752462;
+  color: #7E3A8B;
   font-weight: 600;
   -webkit-transform-origin: left center;
           transform-origin: left center;
@@ -303,7 +303,7 @@ p, .body, p.body, button.body {
 }
 
 .textfield.textfield .Mui-focused {
-  color: #752462;
+  color: #7E3A8B;
 }
 
 .textfield.textfield .Mui-focused fieldset {
@@ -316,7 +316,7 @@ p, .body, p.body, button.body {
 }
 
 .textfield.textfield .MuiFormLabel-filled {
-  color: #752462;
+  color: #7E3A8B;
 }
 
 .textfield.textfield .MuiFormLabel-filled + div fieldset {
@@ -370,7 +370,7 @@ button.textfield__more {
 
 .checkbox__label {
   vertical-align: middle;
-  color: #752462;
+  color: #7E3A8B;
 }
 
 .checkbox.checkbox svg {
@@ -443,7 +443,7 @@ div .taskCreation__title::placeholder {
 
 div .taskCreation__title:focus {
   outline: none;
-  background-color: rgba(117, 36, 98, 0.5);
+  background-color: rgba(126, 58, 139, 0.5);
 }
 
 div .taskCreation__close {
@@ -518,7 +518,7 @@ div .taskCreation__difficulty {
 .MuiTypography-h6.MuiTypography-h6 {
   font-size: 2rem;
   font-family: "Josefin Sans", sans-serif;
-  color: #752462;
+  color: #7E3A8B;
 }
 
 div.MuiToolbar-root, div.MuiPickersClock-pin, div.MuiPickersClockPointer-pointer, div.MuiPickersClockPointer-thumb {
@@ -537,7 +537,7 @@ div.MuiToolbar-root, div.MuiPickersClock-pin, div.MuiPickersClockPointer-pointer
 
 span.MuiButton-label {
   font-size: 1.4rem;
-  color: #752462;
+  color: #7E3A8B;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   text-transform: capitalize;
@@ -563,17 +563,85 @@ div[class|="VerticalAppointment-title"] {
   font-family: "Josefin Sans", sans-serif;
 }
 
-span.Label-text-35 {
+div.Root-container-1 {
+  position: relative;
+  border-radius: 7px;
+  margin-top: 8.4rem;
+}
+
+div.Root-container-1 > div:not(.MuiToolbar-root) {
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+div.Root-container-1 span[class|="Label-text"] {
   font-size: 1.2rem;
   font-family: "Poppins", sans-serif;
   color: #7E7278;
 }
 
-div.Root-container-1 {
-  overflow: hidden;
-  background-color: #ffffff;
-  border-radius: 7px;
-  margin-top: 2rem;
+div.Root-container-1 .MuiTableCell-root, div.Root-container-1 div[class*="makeStyles-leftPanel"] {
+  border-color: #F4F1F3;
+}
+
+div.Root-container-1 div[class|="makeStyles-stickyElement"] {
+  border: none;
+}
+
+div.Root-container-1 .MuiToolbar-root {
+  position: absolute;
+  width: 100%;
+  top: -2rem;
+  min-height: unset;
+  height: 4.4rem;
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+  background: none;
+  border: none;
+}
+
+div.Root-container-1 .MuiToolbar-root div:first-child {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+div.Root-container-1 .MuiToolbar-root div:first-child .NavigationButton-button-4:nth-child(2) {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+}
+
+div.Root-container-1 .MuiToolbar-root div:first-child .OpenButton-textButton-5 {
+  display: block;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+
+div.Root-container-1 .MuiToolbar-root div:first-child .OpenButton-textButton-5 .MuiButton-label {
+  position: relative;
+  top: 0.2rem;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1.8rem;
+  color: #9E51BF;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+div.Root-container-1 .MuiToolbar-root div:first-child .OpenButton-iconButton-6 {
+  display: none;
+}
+
+.MuiPaper-root.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded {
+  display: none;
 }
 
 p[class|="Cell-dayOfWeek"] {
@@ -581,29 +649,22 @@ p[class|="Cell-dayOfWeek"] {
   font-size: 1.6rem;
 }
 
-div.makeStyles-leftPanel-5, .makeStyles-background-14.makeStyles-inlineFlex-13.makeStyles-ordinaryHeaderBorder-8,
-td.MuiTableCell-root.MuiTableCell-body.TickCell-cell-38,
-td.MuiTableCell-root.MuiTableCell-body.makeStyles-cell-43,
-.makeStyles-flexRow-11.makeStyles-stickyElement-3.makeStyles-leftPanel-5.makeStyles-ordinaryLeftPanelBorder-6 {
-  border-color: #F4F1F3;
-}
-
 @media (max-width: 836px) {
-  .makeStyles-cell-43, .Cell-cell-21 {
+  .makeStyles-cell-43, .Cell-cell-21, .makeStyles-cell-49, .Cell-cell-27 {
     width: 100px;
   }
 }
 
-td.Cell-cell-21 {
+td.Cell-cell-21, td.Cell-cell-27 {
   padding: 2rem 1rem;
 }
 
-td.Cell-cell-21 p, td.Cell-cell-21 div {
+td.Cell-cell-21 p, td.Cell-cell-21 div, td.Cell-cell-27 p, td.Cell-cell-27 div {
   font-weight: 600;
   color: #DDD5DB;
 }
 
-td.Cell-cell-21 p.Cell-highlightedText-24, td.Cell-cell-21 div.Cell-highlightedText-24 {
+td.Cell-cell-21 p.Cell-highlightedText-24, td.Cell-cell-21 p.Cell-highlightedText-30, td.Cell-cell-21 div.Cell-highlightedText-24, td.Cell-cell-21 div.Cell-highlightedText-30, td.Cell-cell-27 p.Cell-highlightedText-24, td.Cell-cell-27 p.Cell-highlightedText-30, td.Cell-cell-27 div.Cell-highlightedText-24, td.Cell-cell-27 div.Cell-highlightedText-30 {
   color: #9E51BF;
 }
 
@@ -669,7 +730,7 @@ td.Cell-cell-21 p.Cell-highlightedText-24, td.Cell-cell-21 div.Cell-highlightedT
 }
 
 .log__title, .log__navigate {
-  color: #752462;
+  color: #7E3A8B;
   text-align: center;
   margin: 3rem auto;
 }
@@ -683,7 +744,7 @@ td.Cell-cell-21 p.Cell-highlightedText-24, td.Cell-cell-21 div.Cell-highlightedT
   display: block;
   margin-left: auto;
   margin-bottom: 5rem;
-  color: #752462;
+  color: #7E3A8B;
   text-align: end;
   cursor: pointer;
 }
@@ -707,7 +768,7 @@ td.Cell-cell-21 p.Cell-highlightedText-24, td.Cell-cell-21 div.Cell-highlightedT
 }
 
 .formStep__title {
-  color: #752462;
+  color: #7E3A8B;
 }
 
 .formStep__text {

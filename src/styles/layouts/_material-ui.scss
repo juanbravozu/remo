@@ -96,17 +96,76 @@ div[class|="VerticalAppointment-title"] {
     font-family: $josefin;
 }
 
-span.Label-text-35 {
-    font-size: 1.2rem;
-    font-family: $poppins;
-    color: $interfaceLight;
+div.Root-container-1 {
+    position: relative;
+    border-radius: 7px;
+    margin-top: 8.4rem;
+
+    > div:not(.MuiToolbar-root) {
+        background-color: $bgLight;
+        border-radius: 8px;
+    }
+
+    span[class|="Label-text"] {
+        font-size: 1.2rem;
+        font-family: $poppins;
+        color: $interfaceLight;
+    }
+
+    .MuiTableCell-root, div[class*="makeStyles-leftPanel"] {
+        border-color: $bgDark;
+    }
+
+    div[class|="makeStyles-stickyElement"] {
+        border: none;
+    }
+
+    .MuiToolbar-root {
+        position: absolute;
+        width: 100%;
+        top: -2rem;
+        min-height: unset;
+        height: 4.4rem;
+        transform: translateY(-100%);
+        background: none;
+        border: none;
+
+        div:first-child {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+
+            .NavigationButton-button-4:nth-child(2) {
+                order: 2;
+            }
+
+            .OpenButton- {
+                &textButton-5 {
+                    display: block;
+                    order: 1;
+
+                    .MuiButton-label {
+                        position: relative;
+                        top: 0.2rem;
+                        font-family: $josefin;
+                        font-size: 1.8rem;
+                        color: $primary;
+                        text-transform: uppercase;
+                        font-weight: 700;
+                    }
+                }
+
+                &iconButton-6 {
+                    display: none;
+                }
+            }
+        }
+    }
 }
 
-div.Root-container-1 {
-    overflow: hidden;
-    background-color: $bgLight;
-    border-radius: 7px;
-    margin-top: 2rem;
+.MuiPaper-root.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded {
+    display: none;
 }
 
 p[class|="Cell-dayOfWeek"] {
@@ -118,23 +177,22 @@ div.makeStyles-leftPanel-5, .makeStyles-background-14.makeStyles-inlineFlex-13.m
 td.MuiTableCell-root.MuiTableCell-body.TickCell-cell-38, 
 td.MuiTableCell-root.MuiTableCell-body.makeStyles-cell-43,
 .makeStyles-flexRow-11.makeStyles-stickyElement-3.makeStyles-leftPanel-5.makeStyles-ordinaryLeftPanelBorder-6 {
-    border-color: $bgDark;
 }
 
-.makeStyles-cell-43, .Cell-cell-21 {
+.makeStyles-cell-43, .Cell-cell-21, .makeStyles-cell-49, .Cell-cell-27 {
     @media (max-width: 836px) {
         width: 100px;
     }
 }
 
-td.Cell-cell-21 {
+td.Cell-cell-21, td.Cell-cell-27 {
     padding: 2rem 1rem;
 
     p, div {
         font-weight: 600;
         color: $bgBigDark;
 
-        &.Cell-highlightedText-24 {
+        &.Cell-highlightedText-24, &.Cell-highlightedText-30 {
             color: $primary;
         }
     }

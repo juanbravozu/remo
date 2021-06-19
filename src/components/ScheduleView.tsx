@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { ViewState } from "@devexpress/dx-react-scheduler";
-import { Appointments, AppointmentTooltip, DayView, Scheduler, WeekView } from "@devexpress/dx-react-scheduler-material-ui";
+import { Appointments, AppointmentTooltip, DateNavigator, DayView, Scheduler, Toolbar, WeekView } from "@devexpress/dx-react-scheduler-material-ui";
 import Appointment from "../components/Appointment";
 import { AppointmentTooltipContent, AppointmentTooltipHeader } from "../components/AppointmentTooltip";
 import React from "react";
@@ -34,9 +34,11 @@ const ScheduleView:FC<IScheduleView> = ({ displayTasks }) => {
             </div>
 
             <Scheduler data={displayTasks} firstDayOfWeek={1} locale="es">
-                <ViewState currentDate={currentDate} currentViewName={viewName}/>
+                <ViewState currentDate={currentDate} currentViewName={viewName} onCurrentDateChange={date => setCurrentDate(date)}/>
                 <WeekView startDayHour={4} endDayHour={24} cellDuration={60}/> 
                 <DayView startDayHour={4} endDayHour={24} cellDuration={60}/>
+                <Toolbar />
+                <DateNavigator />
                 <Appointments appointmentComponent={Appointment}/>
                 <AppointmentTooltip headerComponent={AppointmentTooltipHeader} contentComponent={AppointmentTooltipContent}/>
             </Scheduler>
