@@ -130,7 +130,7 @@ const SignUp:FC = () => {
     return (
         <section className="log">
 
-            <div className={`flex-center log__logo ${(stage > Stage.Basic && stage < 6) && "hidden"}`}>
+            <div className={`flex-center log__logo ${(stage > Stage.Basic && stage < 7) && "hidden"}`}>
                 <img src={logo} alt="Remo"/>
             </div>            
 
