@@ -15,6 +15,8 @@ import { assignTime } from "../utils/algorithm";
 import ScheduleView from "../components/ScheduleView";
 import profileIcon from '../assets/profile_icon.svg';
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
+import { Chart, PieSeries } from "@devexpress/dx-react-chart-material-ui";
+import PiePoint from "../components/PiePoint";
 
 const Dashboard:FC = () => {
 
@@ -23,6 +25,7 @@ const Dashboard:FC = () => {
     const [ userData, setUserData ] = useState<any>({});
     const [ tasks, setTasks ] = useState<any[]>([]);
     const [ displayTasks, setdisplayTasks ] = useState<any[]>([]);
+    const [ displayStats, setDisplayStats ] = useState<any[]>([{difficulty: "easy", value: 0, color: "#67C6DA"}, {difficulty: "medium", value: 0, color: "#8D6BD7"}, {difficulty: "hard", value: 0, color: "#FF777B"}]);
     const [ openTaskCreation, setOpenTaskCreation ] = useState<boolean>(false);
     const [ viewName, setViewName ] = useState<string>("Day");
     const [ currentDate, setCurrentDate ] = useState(new Date());
@@ -54,12 +57,37 @@ const Dashboard:FC = () => {
         const formattedTasks:any[] = [];
 
         assignTime(tasks, userData.profile, userData);
+        const easyTasks = {difficulty: "easy", value: 0, color: "#67C6DA"};
+        const mediumTasks = {difficulty: "medium", value: 0, color: "#8D6BD7"};
+        const hardTasks = {difficulty: "hard", value: 0, color: "#FF777B"};
+        const weekStart = new Date();
+        weekStart.getDay() === 0 ? weekStart.setDate(weekStart.getDate() - 6) : weekStart.setDate(weekStart.getDate() - weekStart.getDay() - 1);
 
         tasks.forEach(task => {
             if(task.schedule.length > 0) {
+
+
                 db.collection('users').doc(currentUser.uid).collection('tasks').doc(task.id).set(task);
 
                 task.schedule.forEach((assignation: any, index: number) => {
+                    const assignationDate = new Date(assignation.day);
+
+                    if(assignationDate.getDate() >= weekStart.getDate() && assignationDate.getDate() < weekStart.getDate() + 7) {
+                        switch(task.difficulty) {
+                            case 1:
+                                easyTasks.value = easyTasks.value + assignation.end - assignation.start
+                                break;
+
+                            case 3:
+                                mediumTasks.value = mediumTasks.value + assignation.end - assignation.start
+                                break;
+
+                            case 5: 
+                                hardTasks.value = hardTasks.value + assignation.end - assignation.start
+                                break;
+                        }
+                    }
+
                     const formatedTask = {
                         title: task.name,
                         startDate: new Date(task.schedule[index].day).setHours(task.schedule[index].start),
@@ -74,6 +102,7 @@ const Dashboard:FC = () => {
             }
         });       
 
+        setDisplayStats([easyTasks, mediumTasks, hardTasks]);
         setdisplayTasks(formattedTasks);
 
     }, [tasks]);
@@ -81,7 +110,7 @@ const Dashboard:FC = () => {
     function handleLogOut() {
         logout()
         .then(() => {
-            history.push('/login');
+            history.push('/inicia-sesion');
         })
     }
 
@@ -147,9 +176,34 @@ const Dashboard:FC = () => {
                 </MuiPickersUtilsProvider>
 
                 <Paper elevation={0} className="card">
-                    <div className="flex-spbt">
-                        <h2>Esta semana</h2>
-                        <Link to="/estadisticas">Ver más</Link>
+                    <header className="flex-spbt card__header">
+                        <h2 className="card__title">Esta semana</h2>
+                        <Link to="/estadisticas" className="card__link">Ver más</Link>
+                    </header>
+
+                    <p className="card__body">Tareas por dificultad</p>
+
+                    <Chart data={displayStats}>
+                        <PieSeries pointComponent={PiePoint} valueField="value" argumentField="difficulty" innerRadius={0.8}/>
+                    </Chart>
+
+                    <div className="card__body flex-center">
+                        <p>{displayStats[0].value + displayStats[1].value + displayStats[2].value} horas totales</p>
+                    </div>
+
+                    <div className="card__body flex-spbt">
+                        <p style={{fontWeight: 600, color: "#67C6DA"}}>Dificultad Baja</p>
+                        <p>{displayStats[0].value} horas</p>
+                    </div>
+
+                    <div className="card__body flex-spbt">
+                        <p style={{fontWeight: 600, color: "#8D6BD7"}}>Dificultad Media</p>
+                        <p>{displayStats[1].value} horas</p>
+                    </div>
+
+                    <div className="card__body flex-spbt">
+                        <p style={{fontWeight: 600, color: "#FF777B"}}>Dificultad Alta</p>
+                        <p>{displayStats[2].value} horas</p>
                     </div>
                 </Paper>
             </div>

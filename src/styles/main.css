@@ -609,6 +609,48 @@ div .taskCreation__difficulty {
   }
 }
 
+.card {
+  margin: 2rem 0;
+  padding: 2rem;
+}
+
+.card__title {
+  color: #9E51BF;
+}
+
+.card__link {
+  color: #DDD5DB;
+}
+
+.card__link:hover {
+  color: #B4B1B2;
+}
+
+.card__header {
+  margin-bottom: 2rem;
+}
+
+.card__body {
+  margin-bottom: 1.5rem;
+}
+
+.card__body + div:not(.card__body) {
+  margin: 2rem 0;
+  height: 270px !important;
+}
+
+.card__body + div:not(.card__body) g:nth-of-type(1) path {
+  fill: #67C6DA;
+}
+
+.card__body + div:not(.card__body) g:nth-of-type(2) path {
+  fill: #8D6BD7;
+}
+
+.card__body + div:not(.card__body) g:nth-of-type(3) path {
+  fill: #FF777B;
+}
+
 .MuiFormLabel-root.MuiFormLabel-root, .MuiInputBase-root.MuiInputBase-root {
   font-family: inherit;
 }
@@ -792,7 +834,7 @@ div.Root-container-1 .MuiToolbar-root div:first-child .OpenButton-iconButton-6 {
 @media (min-width: 1280px) {
   div.Root-container-1 .makeStyles-container-8 {
     width: 600px;
-    width: calc(100vw - 65rem);
+    width: calc(100vw - 67rem);
   }
 }
 
@@ -991,8 +1033,27 @@ button.formStep__back {
   left: 3rem;
 }
 
+.dashboard__asideSection {
+  display: none;
+}
+
 .dashboard__asideSection div.MuiToolbar-root {
   display: none;
+}
+
+@media (min-width: 1024px) {
+  .dashboard__asideSection {
+    display: block;
+  }
+}
+
+.dashboard__asideSection div:last-child {
+  margin-bottom: 0;
+}
+
+.dashboard {
+  overflow-y: hidden;
+  min-height: 100vh;
 }
 
 .dashboard > * {
@@ -1029,6 +1090,15 @@ button.formStep__back {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.flex-spbt {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .hidden {

@@ -1,10 +1,23 @@
 .dashboard__asideSection {
+    display: none;
+
     div.MuiToolbar-root {
         display: none;
+    }
+
+    @media (min-width: $lg) {
+        display: block;
+    }
+
+    div:last-child {
+        margin-bottom: 0;
     }
 }
 
 .dashboard {
+    overflow-y: hidden;
+    min-height: 100vh;
+
     > * {
         max-width: 1400px;
     }

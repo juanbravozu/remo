@@ -1,3 +1,41 @@
 .card {
-    
+    margin: 2rem 0;
+    padding: 2rem;
+
+    &__title {
+        color: $primary;
+    }
+
+    &__link {
+        color: $bgBigDark;
+
+        &:hover {
+            color: $interfaceLight;
+        }
+    }
+
+    &__header {
+        margin-bottom: 2rem;
+    }
+
+    &__body {
+        margin-bottom: 1.5rem;
+
+        + div:not(.card__body) {
+            margin: 2rem 0;
+            height: 270px !important;
+
+            g:nth-of-type(1) path {
+                fill: #67C6DA;
+            }
+
+            g:nth-of-type(2) path {
+                fill: #8D6BD7;
+            }
+
+            g:nth-of-type(3) path {
+                fill: #FF777B;
+            }
+        }
+    }
 }
