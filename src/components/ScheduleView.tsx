@@ -22,8 +22,8 @@ const ScheduleView:FC<IScheduleView> = ({ displayTasks,viewName, currentDate, se
         <React.Fragment>
             <Scheduler data={displayTasks} firstDayOfWeek={1} locale="es">
                 <ViewState currentDate={currentDate} currentViewName={viewName} onCurrentDateChange={date => setCurrentDate(date)}/>
-                <WeekView startDayHour={startHour-1} endDayHour={endHour+1} cellDuration={60}/> 
-                <DayView startDayHour={startHour-1} endDayHour={endHour+1} cellDuration={60}/>
+                <WeekView startDayHour={startHour-2} endDayHour={endHour+2} cellDuration={60}/> 
+                <DayView startDayHour={startHour-2} endDayHour={endHour+2} cellDuration={60}/>
                 <Toolbar />
                 <DateNavigator />
                 <Appointments appointmentComponent={Appointment}/>

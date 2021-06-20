@@ -33,5 +33,20 @@
 
     .MuiPickersStaticWrapper-staticWrapperRoot {
         border-radius: 8px;
+
+        .MuiTypography-body1.MuiTypography-alignCenter {
+            font-family: $josefin;
+            font-size: 2rem;
+            color: $interfaceDark;
+            text-transform: capitalize;
+        }
+
+        .MuiPickersCalendarHeader-dayLabel {
+            font-family: $josefin;
+            font-size: 1.4rem;
+            color: $primary;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
     }
 }

@@ -24,7 +24,7 @@ const Dashboard:FC = () => {
     const { currentUser } = useAuth()!;
     const [ userData, setUserData ] = useState<any>({});
     const [ tasks, setTasks ] = useState<any[]>([]);
-    const [ displayTasks, setdisplayTasks ] = useState<any[]>([]);
+    const [ displayTasks, setDisplayTasks ] = useState<any[]>([]);
     const [ displayStats, setDisplayStats ] = useState<any[]>([{difficulty: "easy", value: 0, color: "#67C6DA"}, {difficulty: "medium", value: 0, color: "#8D6BD7"}, {difficulty: "hard", value: 0, color: "#FF777B"}]);
     const [ openTaskCreation, setOpenTaskCreation ] = useState<boolean>(false);
     const [ viewName, setViewName ] = useState<string>("Day");
@@ -53,59 +53,66 @@ const Dashboard:FC = () => {
         });
     }, []);
     
-    useEffect(() => {
-        const formattedTasks:any[] = [];
+    useEffect(() => { 
 
-        assignTime(tasks, userData.profile, userData);
-        const easyTasks = {difficulty: "easy", value: 0, color: "#67C6DA"};
-        const mediumTasks = {difficulty: "medium", value: 0, color: "#8D6BD7"};
-        const hardTasks = {difficulty: "hard", value: 0, color: "#FF777B"};
-        const weekStart = new Date();
-        weekStart.getDay() === 0 ? weekStart.setDate(weekStart.getDate() - 6) : weekStart.setDate(weekStart.getDate() - weekStart.getDay() - 1);
+        setTasks(state => {
+            console.log(state);
+            const formattedTasks:any[] = [];
+            const easyTasks = {difficulty: "easy", value: 0, color: "#67C6DA"};
+            const mediumTasks = {difficulty: "medium", value: 0, color: "#8D6BD7"};
+            const hardTasks = {difficulty: "hard", value: 0, color: "#FF777B"};
+            const weekStart = new Date();
+            weekStart.getDay() === 0 ? weekStart.setDate(weekStart.getDate() - 6) : weekStart.setDate(weekStart.getDate() - weekStart.getDay() - 1);
 
-        tasks.forEach(task => {
-            if(task.schedule.length > 0) {
-
-
+            state.forEach(task => {
                 db.collection('users').doc(currentUser.uid).collection('tasks').doc(task.id).set(task);
 
-                task.schedule.forEach((assignation: any, index: number) => {
-                    const assignationDate = new Date(assignation.day);
+                if(task.schedule.length > 0) {
 
-                    if(assignationDate.getDate() >= weekStart.getDate() && assignationDate.getDate() < weekStart.getDate() + 7) {
-                        switch(task.difficulty) {
-                            case 1:
-                                easyTasks.value = easyTasks.value + assignation.end - assignation.start
-                                break;
+                    task.schedule.forEach((assignation: any, index: number) => {
+                        const assignationDate = new Date(assignation.day);
 
-                            case 3:
-                                mediumTasks.value = mediumTasks.value + assignation.end - assignation.start
-                                break;
+                        if(assignationDate.getDate() >= weekStart.getDate() && assignationDate.getDate() < weekStart.getDate() + 7) {
+                            switch(task.difficulty) {
+                                case 1:
+                                    easyTasks.value = easyTasks.value + assignation.end - assignation.start
+                                    break;
 
-                            case 5: 
-                                hardTasks.value = hardTasks.value + assignation.end - assignation.start
-                                break;
+                                case 3:
+                                    mediumTasks.value = mediumTasks.value + assignation.end - assignation.start
+                                    break;
+
+                                case 5: 
+                                    hardTasks.value = hardTasks.value + assignation.end - assignation.start
+                                    break;
+                            }
                         }
-                    }
 
-                    const formatedTask = {
-                        title: task.name,
-                        startDate: new Date(task.schedule[index].day).setHours(task.schedule[index].start),
-                        endDate: new Date(task.schedule[index].day).setHours(task.schedule[index].end-1, 59, 0, 0),
-                        color: task.difficulty === 1 ? '#67C6DA' : task.difficulty === 3 ? '#8D6BD7' : '#FF777B',
-                        textColor: task.difficulty === 1 ? '#67C6DA' : task.difficulty === 3 ? '#8D6BD7' : '#FF777B',
-                        bgColor: task.difficulty === 1 ? '#F6FDFE' : task.difficulty === 3 ? '#F9F7FD' : '#FFF5F5'
-                    }
-                    formattedTasks.push(formatedTask);
-                });
-                
-            }
-        });       
-
-        setDisplayStats([easyTasks, mediumTasks, hardTasks]);
-        setdisplayTasks(formattedTasks);
-
+                        const formatedTask = {
+                            title: task.name,
+                            startDate: new Date(task.schedule[index].day).setHours(task.schedule[index].start),
+                            endDate: new Date(task.schedule[index].day).setHours(task.schedule[index].end-1, 59, 0, 0),
+                            color: task.difficulty === 1 ? '#67C6DA' : task.difficulty === 3 ? '#8D6BD7' : '#FF777B',
+                            textColor: task.difficulty === 1 ? '#67C6DA' : task.difficulty === 3 ? '#8D6BD7' : '#FF777B',
+                            bgColor: task.difficulty === 1 ? '#F6FDFE' : task.difficulty === 3 ? '#F9F7FD' : '#FFF5F5'
+                        }
+                        formattedTasks.push(formatedTask);
+                    });
+                    
+                }
+            });       
+            setDisplayTasks(formattedTasks);
+            setDisplayStats([easyTasks, mediumTasks, hardTasks]);
+            return state;
+        })
+        
+            
     }, [tasks]);
+
+    function updateRecommendation(newTasks:any) {
+        /* const tasksToSet = assignTime(newTasks, userData.profile, userData); */
+        setTasks(assignTime(newTasks, userData.profile, userData));
+    }
 
     function handleLogOut() {
         logout()
@@ -157,10 +164,9 @@ const Dashboard:FC = () => {
                     </Button>
                 </div>
                 
-
                 <ScheduleView displayTasks={displayTasks} viewName={viewName} currentDate={currentDate} setCurrentDate={setCurrentDate} startHour={userData.workday ? userData.workday[0] : 5} endHour={userData.workday ? userData.workday[1] : 21}/>
 
-                <TaskCreationForm open={openTaskCreation} setOpen={setOpenTaskCreation} tasks={tasks} setTasks={setTasks}/>
+                <TaskCreationForm open={openTaskCreation} setOpen={setOpenTaskCreation} tasks={tasks} setTasks={updateRecommendation} userData={userData}/>
             </div>
             
             <div className="dashboard__asideSection">
@@ -184,7 +190,7 @@ const Dashboard:FC = () => {
                     <p className="card__body">Tareas por dificultad</p>
 
                     <Chart data={displayStats}>
-                        <PieSeries pointComponent={PiePoint} valueField="value" argumentField="difficulty" innerRadius={0.8}/>
+                        <PieSeries pointComponent={PiePoint} valueField="value" argumentField="difficulty" outerRadius={0.8} innerRadius={0.6}/>
                     </Chart>
 
                     <div className="card__body flex-center">

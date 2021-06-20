@@ -86,38 +86,89 @@ span.MuiButton-label {
     }
 }
 
-div[class|="VerticalAppointment"] {
-    color: inherit;
-    font-family: $poppins;
-    font-size: 1.6rem;
-}
-
-div[class|="VerticalAppointment-title"] {
-    font-family: $josefin;
-}
-
-div.Root-container-1 {
+.scheduleControls + div {
     position: relative;
     border-radius: 7px;
     margin-top: 8.4rem;
 
-    > div:not(.MuiToolbar-root) {
-        background-color: $bgLight;
-        border-radius: 8px;
-    }
-
-    span[class|="Label-text"] {
-        font-size: 1.2rem;
-        font-family: $poppins;
-        color: $interfaceLight;
-    }
-
-    .MuiTableCell-root, div[class*="makeStyles-leftPanel"] {
+    td.MuiTableCell-root {
         border-color: $bgDark;
     }
 
-    div[class|="makeStyles-stickyElement"] {
-        border: none;
+    @media (min-width: $lg) {
+        margin-top: $outerPad;
+    }
+
+    > div:not(.MuiToolbar-root) {
+        background-color: $bgLight;
+        border-radius: 8px;
+
+        @media (min-width: $lg) {
+            width: 600px;
+            width: calc(100vw - 40rem);
+        }
+    
+        @media (min-width: $xlg) {
+            width: 600px;
+            width: calc(100vw - 67rem);
+        }
+    
+        @media (min-width: 2000px) {
+            width: 100%;
+        }
+
+        > div {
+            div:first-child > div {
+                div:first-child {
+                    border: none;
+                }
+
+                div:last-child td { 
+                    padding: 2rem 1rem;
+
+                    > div {
+                        p, div {
+                            font-family: $josefin;
+                            font-weight: 600;
+                            text-transform: capitalize;
+                            color: $bgBigDark;
+                            font-size: 1.6rem;
+
+                            @media (min-width: $lg) {
+                                font-size: 1.8rem;
+                            }
+
+                            &[class*=" "] {
+                                color: $primary;
+                            }
+                        }
+                    }
+                }
+            }
+
+            div:last-child > div {
+                > div:first-child span {
+                    font-size: 1.2rem;
+                    font-family: $poppins;
+                    color: $interfaceLight;
+                }
+
+                > div:last-child > div {
+                    div {
+                        color: inherit;
+                        font-size: 1.6rem;
+                    }
+
+                    > div > div > div > div > div:first-child {
+                        font-family: $josefin;
+
+                        > div:first-child {
+                            font-family: $josefin;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     .MuiToolbar-root {
@@ -130,89 +181,39 @@ div.Root-container-1 {
         background: none;
         border: none;
 
+        @media(min-width: $lg) {
+            display: none;
+        }
+
         div:first-child {
             display: flex;
             width: 100%;
             justify-content: space-between;
             align-items: center;
 
-            .NavigationButton-button-4:nth-child(2) {
+            button:nth-child(2) {
                 order: 2;
             }
 
-            .OpenButton- {
-                &textButton-5 {
-                    display: block;
-                    pointer-events: none;
-                    order: 1;
+            button:nth-child(3) {
+                display: block;
+                pointer-events: none;
+                order: 1;
 
-                    .MuiButton-label {
-                        position: relative;
-                        top: 0.2rem;
-                        font-family: $josefin;
-                        font-size: 1.8rem;
-                        color: $primary;
-                        text-transform: uppercase;
-                        font-weight: 700;
-                    }
+                .MuiButton-label {
+                    position: relative;
+                    top: 0.2rem;
+                    font-family: $josefin;
+                    font-size: 1.8rem;
+                    color: $primary;
+                    text-transform: uppercase;
+                    font-weight: 700;
                 }
-
-                &iconButton-6 {
-                    display: none;
-                }
+            } 
+            
+            button:last-child {
+                display: none;
             }
-        }
-    }
-
-    @media (min-width: $lg) {
-        .makeStyles-container-8 {
-            width: 600px;
-            width: calc(100vw - 40rem);
-        }
-    }
-
-    @media (min-width: $xlg) {
-        .makeStyles-container-8 {
-            width: 600px;
-            width: calc(100vw - 67rem);
-        }
-    }
-
-    @media (min-width: 2000px) {
-        .makeStyles-container-8 {
-            width: 100%;
-        }
-    }
-}
-
-
-
-p[class|="Cell-dayOfWeek"] {
-    text-transform: capitalize;
-    font-size: 1.6rem;
-}
-
-div.makeStyles-leftPanel-5, .makeStyles-background-14.makeStyles-inlineFlex-13.makeStyles-ordinaryHeaderBorder-8, 
-td.MuiTableCell-root.MuiTableCell-body.TickCell-cell-38, 
-td.MuiTableCell-root.MuiTableCell-body.makeStyles-cell-43,
-.makeStyles-flexRow-11.makeStyles-stickyElement-3.makeStyles-leftPanel-5.makeStyles-ordinaryLeftPanelBorder-6 {
-}
-
-.makeStyles-cell-43, .Cell-cell-21, .makeStyles-cell-49, .Cell-cell-27 {
-    @media (max-width: 836px) {
-        width: 100px;
-    }
-}
-
-td.Cell-cell-21, td.Cell-cell-27 {
-    padding: 2rem 1rem;
-
-    p, div {
-        font-weight: 600;
-        color: $bgBigDark;
-
-        &.Cell-highlightedText-24, &.Cell-highlightedText-30 {
-            color: $primary;
         }
     }
 }

@@ -25,7 +25,6 @@ interface ISchedule {
 }
 
 interface IDeadline {
-    nanoseconds: number,
     seconds: number
 }
 
@@ -70,7 +69,9 @@ function filterAndSortTasks(tasks:Array<ITask>) {
 }
 
 function iterateProd(prodArray:Array<any>, task:ITask, user:any, tasks:Array<ITask>) {
-    for(let day = new Date(); day < new Date(task.deadline.seconds*1000); day.setDate(day.getDate() + 1)) {
+
+    console.log(task.deadline);
+    for(let day = new Date(); day <= new Date(task.deadline.seconds*1000); day.setDate(day.getDate() + 1)) {
 
         let minHour = null;
         if(day.getDate() === new Date().getDate()) minHour = new Date().getHours();
@@ -170,6 +171,8 @@ function assignTime(tasks:Array<ITask>, profile:number, user:any) {
             }
         }
     });
+
+    return tasks.slice();
 }
 
 function unassignTasks(tasks:Array<ITask>) {

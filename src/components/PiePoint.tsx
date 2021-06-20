@@ -3,7 +3,6 @@ import { FC } from "react";
 
 
 const PiePoint:FC<any> = ({children, style, data,...props}) => {
-    console.log(props)
     return (
         <PieSeries.Point
             {...props}

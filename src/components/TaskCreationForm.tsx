@@ -14,17 +14,19 @@ import { uuid } from 'uuidv4';
 import { useAuth } from "../contexts/AuthContext";
 import { db } from "../utils/firebase";
 import React from "react";
+import { assignTime } from "../utils/algorithm";
 
 interface ITaskCreationForm {
     open: boolean,
     setOpen: (value:boolean) => void,
     tasks: any,
-    setTasks: (value:any) => void
+    setTasks: (value:any) => void,
+    userData: any,
 }
 
 enum Difficulty {Easy, Medium, Hard};
 
-const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen, tasks, setTasks}) => {
+const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen, tasks, setTasks, userData }) => {
 
     const [ taskName, setTaskName ] = useState<string>('');
     const [ taskDifficulty, setTaskDifficulty ] = useState<number>(-1);
@@ -79,7 +81,7 @@ const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen, tasks, setTasks}
             duration: length,
             assigned: 0,
             manual: false,
-            deadline: deadline,
+            deadline: {seconds: deadline.getTime()/1000},
             weekend: weekend,
             schedule: []
         }
@@ -101,9 +103,11 @@ const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen, tasks, setTasks}
         db.collection('users').doc(currentUser.uid).collection('tasks').doc(id).set(newTask)
         .then(() => {
             resetValues();
-            setTasks((prev:any) => [...prev, newTask]);
+            const copy = [...tasks, newTask];
+            setTasks(copy);
+            console.log("Tarea creada")
             setOpen(false);
-        })
+        });
     }
 
     function handleManualAssignment() {
@@ -165,7 +169,7 @@ const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen, tasks, setTasks}
             difficulty: taskDifficulty,
             duration: length,
             assigned: length,
-            deadline: deadline,
+            deadline: {seconds: deadline.getTime()/1000},
             weekend: weekend,
             manual: true,
             schedule: [{
@@ -175,6 +179,7 @@ const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen, tasks, setTasks}
             }]
         }
 
+        console.log(newTask);
         switch(taskDifficulty) {
             case Difficulty.Easy:
                 newTask.difficulty = 1;
