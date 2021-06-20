@@ -70,7 +70,7 @@ function filterAndSortTasks(tasks:Array<ITask>) {
 }
 
 function iterateProd(prodArray:Array<any>, task:ITask, user:any, tasks:Array<ITask>) {
-    for(let day = new Date(); day.getDate() < new Date(task.deadline.seconds*1000).getDate(); day.setDate(day.getDate() + 1)) {
+    for(let day = new Date(); day < new Date(task.deadline.seconds*1000); day.setDate(day.getDate() + 1)) {
 
         let minHour = null;
         if(day.getDate() === new Date().getDate()) minHour = new Date().getHours();
@@ -84,15 +84,18 @@ function iterateProd(prodArray:Array<any>, task:ITask, user:any, tasks:Array<ITa
                 if(day.getDay() === 0 || (day.getDay() === 6 && !task.weekend)) available = false;
 
                 if(available && user.workday[0] <= prodArray[i].hour && user.workday[1] >= prodArray[i].hour + limitNumber(prodArray[i].hour, 2) && 
-                !(user.lunch <= prodArray[i].hour && user.nap > prodArray[i].hour)) {
+                !((user.lunch <= prodArray[i].hour && user.nap > prodArray[i].hour) || (user.lunch <= prodArray[i].hour + limitNumber(task.duration, 2) 
+                && user.nap >= prodArray[i].hour + limitNumber(task.duration, 2)) || (user.lunch >= prodArray[i].hour && user.nap <= prodArray[i].hour + limitNumber(task.duration, 2)))) {
                     for(let j = 0; j < tasks.length; j++) {
                         const compareTask = tasks[j];
                         for(let k = 0; k < compareTask.schedule.length; k++) {
                             const schedule = compareTask.schedule[k];
-                            if(new Date(schedule.day).getDate() === day.getDate() && ((schedule.start >= prodArray[i].hour && schedule.end <= prodArray[i].hour) || (schedule.start >= prodArray[i].hour + limitNumber(task.duration, 2) && schedule.end <= prodArray[i].hour + limitNumber(task.duration, 2)) || (schedule.start >= prodArray[i].hour && schedule.end <= prodArray[i].hour + limitNumber(task.duration, 2)))){
+                            if(new Date(schedule.day).getDate() === day.getDate() && ((schedule.start <= prodArray[i].hour && schedule.end >= prodArray[i].hour) || (schedule.start <= prodArray[i].hour + limitNumber(task.duration, 2) && schedule.end >= prodArray[i].hour + limitNumber(task.duration, 2)) || (schedule.start >= prodArray[i].hour && schedule.end <= prodArray[i].hour + limitNumber(task.duration, 2)))){
                                 available = false;
                             }
                         }
+
+                        if(!available) break;
                     }
                 } else {
                     available = false;

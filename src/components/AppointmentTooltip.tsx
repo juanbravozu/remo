@@ -12,7 +12,6 @@ const AppointmentTooltipHeader:FC<any> = ({ children, style, appointmentData, ..
                 ...style,
             }}
         >
-            {children}
         </AppointmentTooltip.Header>
     )
 }

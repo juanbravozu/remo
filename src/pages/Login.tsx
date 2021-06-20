@@ -80,11 +80,11 @@ const Login:FC = () => {
                         {!passwordVisible && <Visibility/>}
                     </IconButton>
                 </div>           
-                <Link to="/forgotPassword" className="log__forgotPassword">¿Olvidaste tu contraseña?</Link>     
+                <Link to="/olvidaste-tu-contrasena" className="log__forgotPassword">¿Olvidaste tu contraseña?</Link>     
                 <Button variant="contained" className="btn btn--secondary" type="submit">Iniciar sesión</Button>
 
                 
-                <p className="log__navigate">¿No tienes cuenta? <Link to="/signup" className="underline">Regístrate</Link></p>
+                <p className="log__navigate">¿No tienes cuenta? <Link to="/registrate" className="underline">Regístrate</Link></p>
             </form>
 
             <Snackbar open={openError} autoHideDuration={5000} onClose={handleClose}>

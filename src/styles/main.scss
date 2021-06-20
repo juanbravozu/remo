@@ -7,14 +7,18 @@ $white: #FCF8FB;
 @import './abstracts/animations';
 @import './base/reset';
 @import './base/typography';
+@import './base/breakpoints';
 @import './components/btn';
 @import './components/textfield';
 @import './components/checkbox';
 @import './components/lateralMenu';
 @import './components/nav';
 @import './components/taskCreation';
+@import './components/schedule';
+@import './components/card';
 @import './layouts/material-ui';
 @import './pages/log';
+@import './pages/dashboard';
 
 .App {
     min-height: 100vh;
@@ -34,7 +38,7 @@ main {
     background-color: $bgDark;
     min-height: calc(100vh - 6rem);
 
-    > * {
-        max-width: 1400px;
+    @media (min-width: $xlg) {
+        justify-content: center;
     }
 }

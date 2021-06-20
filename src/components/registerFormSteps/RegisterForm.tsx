@@ -119,7 +119,7 @@ const RegisterForm:FC<BasicRegisterProps> = ({setError, setOpenError, setRegiste
             </div>
             <Button variant="contained" className="btn btn--secondary" type="submit" disabled={loading}>Regístrate</Button>
 
-            <p className="log__navigate">¿Ya tienes cuenta? <Link to="/login" className="underline">Inicia sesión</Link></p>
+            <p className="log__navigate">¿Ya tienes cuenta? <Link to="/inicia-sesion" className="underline">Inicia sesión</Link></p>
 
             <Dialog open={openModal} onClose={handleCloseModal} scroll="paper" aria-labelledby="scroll-dialog-title" aria-describedby="scroll-dialog-description">
                 <DialogTitle id="scroll-dialog-title">Términos y condiciones</DialogTitle>

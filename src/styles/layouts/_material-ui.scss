@@ -143,6 +143,7 @@ div.Root-container-1 {
             .OpenButton- {
                 &textButton-5 {
                     display: block;
+                    pointer-events: none;
                     order: 1;
 
                     .MuiButton-label {
@@ -162,11 +163,29 @@ div.Root-container-1 {
             }
         }
     }
+
+    @media (min-width: $lg) {
+        .makeStyles-container-8 {
+            width: 600px;
+            width: calc(100vw - 40rem);
+        }
+    }
+
+    @media (min-width: $xlg) {
+        .makeStyles-container-8 {
+            width: 600px;
+            width: calc(100vw - 65rem);
+        }
+    }
+
+    @media (min-width: 2000px) {
+        .makeStyles-container-8 {
+            width: 100%;
+        }
+    }
 }
 
-.MuiPaper-root.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded {
-    display: none;
-}
+
 
 p[class|="Cell-dayOfWeek"] {
     text-transform: capitalize;
@@ -196,4 +215,8 @@ td.Cell-cell-21, td.Cell-cell-27 {
             color: $primary;
         }
     }
+}
+
+.MuiPaper-rounded.MuiPaper-rounded {
+    border-radius: 8px;
 }

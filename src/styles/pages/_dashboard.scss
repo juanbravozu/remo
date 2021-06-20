@@ -1,0 +1,24 @@
+.dashboard__asideSection {
+    div.MuiToolbar-root {
+        display: none;
+    }
+}
+
+.dashboard {
+    > * {
+        max-width: 1400px;
+    }
+
+    @media (min-width: $lg) {
+        display: flex;
+        gap: $outerPad;
+    }
+
+    @media (min-width: $xlg) {
+        padding-left: 25rem + $outerPad;
+    }
+
+    .MuiPickersStaticWrapper-staticWrapperRoot {
+        border-radius: 8px;
+    }
+}

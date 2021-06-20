@@ -12,6 +12,7 @@ import Dashboard from './pages/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
 import { ThemeProvider } from '@material-ui/styles';
 import theme from './utils/theme';
+import Statistics from './pages/Statistics';
 
 function App() {
 
@@ -23,11 +24,13 @@ function App() {
             <Switch>
               <PrivateRoute path="/" exact component={Dashboard}/>
 
-              <Route path="/login" component={Login}/>
+              <Route path="/inicia-sesion" component={Login}/>
 
-              <Route path="/signup" component={SignUp}/>
+              <Route path="/registrate" component={SignUp}/>
 
-              <Route path="/forgotPassword" component={ForgotPassword}/>
+              <Route path="/olvidaste-tu-contrasena" component={ForgotPassword}/>
+
+              <Route path="/estadisticas" component={Statistics}/>
             </Switch>
           </Router>
         </div>

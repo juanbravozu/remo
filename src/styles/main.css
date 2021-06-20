@@ -159,15 +159,15 @@ p, .body, p.body, button.body {
 
 .btn.btn--secondary {
   background-color: #FF777B;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 .btn.btn--secondary:hover {
-  background-color: #e26468;
+  background-color: #E26468;
 }
 
 .btn.btn--secondary .MuiButton-label {
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 .btn.btn--group {
@@ -185,6 +185,22 @@ p, .body, p.body, button.body {
   position: fixed;
   right: 3rem;
   bottom: 3rem;
+  z-index: 10;
+  -webkit-box-shadow: 0px 0px 15px -5px #9e51bf;
+          box-shadow: 0px 0px 15px -5px #9e51bf;
+}
+
+.btn.btn--addTask:hover {
+  -webkit-box-shadow: 0px 0px 15px -5px #9e51bf;
+          box-shadow: 0px 0px 15px -5px #9e51bf;
+}
+
+@media (min-width: 768px) {
+  .btn.btn--addTask {
+    position: static;
+    width: 100%;
+    height: 4.5rem;
+  }
 }
 
 .btn.btn--schedule {
@@ -226,6 +242,16 @@ p, .body, p.body, button.body {
   margin-right: 2rem;
 }
 
+.btn__text {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .btn__text {
+    display: inline;
+  }
+}
+
 .textfield__container {
   position: relative;
 }
@@ -249,7 +275,7 @@ p, .body, p.body, button.body {
           transform-origin: left center;
   -webkit-transform: translate(1.4rem, 50%) scale(0.75);
           transform: translate(1.4rem, 50%) scale(0.75);
-  background-color: #ffffff;
+  background-color: #FFFFFF;
 }
 
 .textfield.textfield {
@@ -379,6 +405,82 @@ button.textfield__more {
 
 .menu {
   padding: 4.5rem 3rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+@media (min-width: 1280px) {
+  .menu {
+    width: 25rem;
+  }
+}
+
+.menu__profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 2rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.menu__profile div {
+  width: 100%;
+  max-width: 140px;
+}
+
+.menu__name {
+  font-size: 2rem;
+}
+
+.menu__divider {
+  width: 100%;
+  height: 1px;
+  border: none;
+  background-color: #DDD5DB;
+  margin: 3rem 0;
+}
+
+.menu__link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 2rem;
+  margin: 1.5rem 0;
+  color: #44223C;
+  border-radius: 7px;
+  -webkit-transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.menu__link:hover {
+  background-color: #F4F1F3;
+}
+
+.menu__link--active {
+  background-color: #9E51BF;
+  color: #FFFFFF;
+}
+
+.menu__link--active:hover {
+  background-color: #7E3A8B;
+}
+
+.menu__link--active .menu__itemIcon {
+  color: #FFFFFF;
+}
+
+.menu__itemIcon {
+  color: #7E3A8B;
 }
 
 .nav {
@@ -393,6 +495,12 @@ button.textfield__more {
           justify-content: space-between;
   height: 6rem;
   padding-right: 3rem;
+}
+
+@media (min-width: 1280px) {
+  .nav {
+    display: none;
+  }
 }
 
 div .taskCreation {
@@ -412,7 +520,7 @@ div .taskCreation__banner {
 
 div .taskCreation__title {
   width: 100%;
-  color: #ffffff;
+  color: #FFFFFF;
   padding: 0.4rem;
   padding-top: 0.8rem;
   border: none;
@@ -422,22 +530,22 @@ div .taskCreation__title {
 }
 
 div .taskCreation__title::-webkit-input-placeholder {
-  color: #ffffff;
+  color: #FFFFFF;
   opacity: 0.6;
 }
 
 div .taskCreation__title:-ms-input-placeholder {
-  color: #ffffff;
+  color: #FFFFFF;
   opacity: 0.6;
 }
 
 div .taskCreation__title::-ms-input-placeholder {
-  color: #ffffff;
+  color: #FFFFFF;
   opacity: 0.6;
 }
 
 div .taskCreation__title::placeholder {
-  color: #ffffff;
+  color: #FFFFFF;
   opacity: 0.6;
 }
 
@@ -468,6 +576,39 @@ div .taskCreation__difficulty {
   margin-bottom: 2rem;
 }
 
+.viewSelection {
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  max-width: 500px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 100%;
+}
+
+.scheduleControls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .scheduleControls {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
 .MuiFormLabel-root.MuiFormLabel-root, .MuiInputBase-root.MuiInputBase-root {
   font-family: inherit;
 }
@@ -491,7 +632,7 @@ div .taskCreation__difficulty {
 }
 
 .MuiSnackbar-root .MuiAlert-standardError {
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   border: 2px #CD3737 solid;
   border-radius: 7px;
 }
@@ -501,7 +642,7 @@ div .taskCreation__difficulty {
 }
 
 .MuiSnackbar-root .MuiAlert-standardSuccess {
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   border: 2px #47D18F solid;
   border-radius: 7px;
 }
@@ -570,14 +711,14 @@ div.Root-container-1 {
 }
 
 div.Root-container-1 > div:not(.MuiToolbar-root) {
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   border-radius: 8px;
 }
 
 div.Root-container-1 span[class|="Label-text"] {
   font-size: 1.2rem;
   font-family: "Poppins", sans-serif;
-  color: #7E7278;
+  color: #B4B1B2;
 }
 
 div.Root-container-1 .MuiTableCell-root, div.Root-container-1 div[class*="makeStyles-leftPanel"] {
@@ -621,6 +762,7 @@ div.Root-container-1 .MuiToolbar-root div:first-child .NavigationButton-button-4
 
 div.Root-container-1 .MuiToolbar-root div:first-child .OpenButton-textButton-5 {
   display: block;
+  pointer-events: none;
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
@@ -640,8 +782,24 @@ div.Root-container-1 .MuiToolbar-root div:first-child .OpenButton-iconButton-6 {
   display: none;
 }
 
-.MuiPaper-root.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded {
-  display: none;
+@media (min-width: 1024px) {
+  div.Root-container-1 .makeStyles-container-8 {
+    width: 600px;
+    width: calc(100vw - 40rem);
+  }
+}
+
+@media (min-width: 1280px) {
+  div.Root-container-1 .makeStyles-container-8 {
+    width: 600px;
+    width: calc(100vw - 65rem);
+  }
+}
+
+@media (min-width: 2000px) {
+  div.Root-container-1 .makeStyles-container-8 {
+    width: 100%;
+  }
 }
 
 p[class|="Cell-dayOfWeek"] {
@@ -666,6 +824,10 @@ td.Cell-cell-21 p, td.Cell-cell-21 div, td.Cell-cell-27 p, td.Cell-cell-27 div {
 
 td.Cell-cell-21 p.Cell-highlightedText-24, td.Cell-cell-21 p.Cell-highlightedText-30, td.Cell-cell-21 div.Cell-highlightedText-24, td.Cell-cell-21 div.Cell-highlightedText-30, td.Cell-cell-27 p.Cell-highlightedText-24, td.Cell-cell-27 p.Cell-highlightedText-30, td.Cell-cell-27 div.Cell-highlightedText-24, td.Cell-cell-27 div.Cell-highlightedText-30 {
   color: #9E51BF;
+}
+
+.MuiPaper-rounded.MuiPaper-rounded {
+  border-radius: 8px;
 }
 
 .log {
@@ -696,7 +858,7 @@ td.Cell-cell-21 p.Cell-highlightedText-24, td.Cell-cell-21 p.Cell-highlightedTex
 .log__form {
   width: 100vw;
   padding: 3rem;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   border-radius: 20px 20px 0 0;
   -webkit-animation-name: slideInFromBottom, fadeIn;
           animation-name: slideInFromBottom, fadeIn;
@@ -763,7 +925,7 @@ td.Cell-cell-21 p.Cell-highlightedText-24, td.Cell-cell-21 p.Cell-highlightedTex
   width: 100%;
   min-height: 100vh;
   padding: 10rem 3rem;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   overflow-x: hidden;
 }
 
@@ -829,6 +991,33 @@ button.formStep__back {
   left: 3rem;
 }
 
+.dashboard__asideSection div.MuiToolbar-root {
+  display: none;
+}
+
+.dashboard > * {
+  max-width: 1400px;
+}
+
+@media (min-width: 1024px) {
+  .dashboard {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 3rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .dashboard {
+    padding-left: 28rem;
+  }
+}
+
+.dashboard .MuiPickersStaticWrapper-staticWrapperRoot {
+  border-radius: 8px;
+}
+
 .App {
   min-height: 100vh;
 }
@@ -852,7 +1041,11 @@ main {
   min-height: calc(100vh - 6rem);
 }
 
-main > * {
-  max-width: 1400px;
+@media (min-width: 1280px) {
+  main {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 /*# sourceMappingURL=main.css.map */
