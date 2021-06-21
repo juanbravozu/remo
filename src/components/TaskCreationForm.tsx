@@ -198,7 +198,9 @@ const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen, tasks, setTasks,
         db.collection('users').doc(currentUser.uid).collection('tasks').doc(id).set(newTask)
         .then(() => {
             resetValues();
-            setTasks((prev:any) => [...prev, newTask]);
+            const copy = [...tasks, newTask];
+            setTasks(copy);
+            console.log("Tarea creada")
             setOpen(false);
         });
     }

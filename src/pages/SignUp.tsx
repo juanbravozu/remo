@@ -73,7 +73,6 @@ function calculateProfile(user:IRegisterInfo) {
     if(result.id === 3 && profiles[3].value === profiles[2].value) result = profiles[2];
     if(result.id === 4 && profiles[4].value === profiles[3].value) result = profiles[3];
 
-    console.log(result);
     return result.id;
 }
 

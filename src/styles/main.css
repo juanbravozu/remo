@@ -759,7 +759,7 @@ span.MuiButton-label {
 @media (min-width: 1024px) {
   .scheduleControls + div > div:not(.MuiToolbar-root) {
     width: 600px;
-    width: calc(100vw - 40rem);
+    width: calc(100vw - 42rem);
   }
 }
 
@@ -882,6 +882,10 @@ span.MuiButton-label {
 
 .MuiPaper-rounded.MuiPaper-rounded {
   border-radius: 8px;
+}
+
+.MuiPopover-root > .MuiPopover-paper > div:last-child div:nth-child(1), .MuiPopover-root > .MuiPopover-paper > div:last-child div:nth-child(2) {
+  display: none;
 }
 
 .log {

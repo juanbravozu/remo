@@ -12,11 +12,11 @@ interface ISlidersStep {
 const marks = [
     {
         value: 1,
-        label: 'I disagree'
+        label: 'Muy en desacuerdo'
     },
     {
         value: 6,
-        label: 'I agree'
+        label: 'Muy de acuerdo'
     }
 ];
 

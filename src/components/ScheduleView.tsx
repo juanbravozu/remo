@@ -5,6 +5,7 @@ import Appointment from "../components/Appointment";
 import { AppointmentTooltipContent, AppointmentTooltipHeader } from "../components/AppointmentTooltip";
 import React from "react";
 import { Button } from "@material-ui/core";
+import { useRef } from "react";
 
 interface IScheduleView {
     displayTasks: Array<any>,
@@ -22,8 +23,8 @@ const ScheduleView:FC<IScheduleView> = ({ displayTasks,viewName, currentDate, se
         <React.Fragment>
             <Scheduler data={displayTasks} firstDayOfWeek={1} locale="es">
                 <ViewState currentDate={currentDate} currentViewName={viewName} onCurrentDateChange={date => setCurrentDate(date)}/>
-                <WeekView startDayHour={startHour-2} endDayHour={endHour+2} cellDuration={60}/> 
-                <DayView startDayHour={startHour-2} endDayHour={endHour+2} cellDuration={60}/>
+                <WeekView startDayHour={startHour-2} endDayHour={endHour+2 > 22 ? endHour + 2 : 22} cellDuration={60}/> 
+                <DayView startDayHour={startHour-2} endDayHour={endHour+2 > 22 ? endHour + 2 : 22} cellDuration={60}/>
                 <Toolbar />
                 <DateNavigator />
                 <Appointments appointmentComponent={Appointment}/>

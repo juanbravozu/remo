@@ -11,7 +11,7 @@ import AddIcon from '@material-ui/icons/Add';
 import InsertChartIcon from '@material-ui/icons/InsertChart';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import TaskCreationForm from "../components/TaskCreationForm";
-import { assignTime } from "../utils/algorithm";
+import { assignTime, unassignTasks } from "../utils/algorithm";
 import ScheduleView from "../components/ScheduleView";
 import profileIcon from '../assets/profile_icon.svg';
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
@@ -72,7 +72,7 @@ const Dashboard:FC = () => {
                     task.schedule.forEach((assignation: any, index: number) => {
                         const assignationDate = new Date(assignation.day);
 
-                        if(assignationDate.getDate() >= weekStart.getDate() && assignationDate.getDate() < weekStart.getDate() + 7) {
+                        if(assignationDate.getDate() > weekStart.getDate() && assignationDate.getDate() < weekStart.getDate() + 7) {
                             switch(task.difficulty) {
                                 case 1:
                                     easyTasks.value = easyTasks.value + assignation.end - assignation.start
@@ -92,9 +92,14 @@ const Dashboard:FC = () => {
                             title: task.name,
                             startDate: new Date(task.schedule[index].day).setHours(task.schedule[index].start),
                             endDate: new Date(task.schedule[index].day).setHours(task.schedule[index].end-1, 59, 0, 0),
+                            deadline: task.deadline,
+                            difficulty: task.difficulty,
                             color: task.difficulty === 1 ? '#67C6DA' : task.difficulty === 3 ? '#8D6BD7' : '#FF777B',
                             textColor: task.difficulty === 1 ? '#67C6DA' : task.difficulty === 3 ? '#8D6BD7' : '#FF777B',
-                            bgColor: task.difficulty === 1 ? '#F6FDFE' : task.difficulty === 3 ? '#F9F7FD' : '#FFF5F5'
+                            bgColor: task.difficulty === 1 ? '#F6FDFE' : task.difficulty === 3 ? '#F9F7FD' : '#FFF5F5',
+                            taskid: task.id,
+                            tasks: tasks,
+                            updateRecommendation: updateRecommendation
                         }
                         formattedTasks.push(formatedTask);
                     });
@@ -110,8 +115,7 @@ const Dashboard:FC = () => {
     }, [tasks]);
 
     function updateRecommendation(newTasks:any) {
-        /* const tasksToSet = assignTime(newTasks, userData.profile, userData); */
-        setTasks(assignTime(newTasks, userData.profile, userData));
+        setTasks(assignTime(unassignTasks(newTasks), userData.profile, userData));
     }
 
     function handleLogOut() {
@@ -233,10 +237,10 @@ const Dashboard:FC = () => {
                         Mi espacio
                     </Link>
 
-                    <Link to="/estadisticas" className="menu__link">
+                    {/* <Link to="/estadisticas" className="menu__link">
                         <InsertChartIcon className="menu__itemIcon"/>
                         Estadísticas
-                    </Link>
+                    </Link> */}
                 </div>
 
                 <div>
@@ -266,10 +270,10 @@ const Dashboard:FC = () => {
                         Mi espacio
                     </Link>
 
-                    <Link to="/estadisticas" className="menu__link">
+                    {/* <Link to="/estadisticas" className="menu__link">
                         <InsertChartIcon className="menu__itemIcon"/>
                         Estadísticas
-                    </Link>
+                    </Link> */}
                 </div>
 
                 <div>

@@ -70,7 +70,6 @@ function filterAndSortTasks(tasks:Array<ITask>) {
 
 function iterateProd(prodArray:Array<any>, task:ITask, user:any, tasks:Array<ITask>) {
 
-    console.log(task.deadline);
     for(let day = new Date(); day <= new Date(task.deadline.seconds*1000); day.setDate(day.getDate() + 1)) {
 
         let minHour = null;
@@ -176,12 +175,15 @@ function assignTime(tasks:Array<ITask>, profile:number, user:any) {
 }
 
 function unassignTasks(tasks:Array<ITask>) {
-    tasks.forEach(task => {
+    const copy = tasks.slice();
+    copy.forEach(task => {
         if(!task.manual) {
             task.assigned = 0;
             task.schedule = [];
         }
     });
+
+    return copy;
 }
 
 export { assignTime, unassignTasks };
