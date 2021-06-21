@@ -32,7 +32,7 @@ const SlidersStep:FC<ISlidersStep> = ({ setStage, setRegisterInfo, setError, set
 
     function updateInformation() {
         if(wakeValue === -1 || nightValue === -1 || satisfactionValue === -1) {
-            setError('Please choose a value in all fields');
+            setError('Elige un valor en todos los campos para poder continuar');
             return setOpenError(true);
         }
 

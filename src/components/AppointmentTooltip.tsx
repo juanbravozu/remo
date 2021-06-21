@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FC } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import SignalCellularAltIcon from '@material-ui/icons/SignalCellularAlt';
+import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import { db } from "../utils/firebase";
 
 
@@ -184,7 +185,7 @@ const AppointmentTooltipContent:FC<any> = ({ children, style, appointmentData, .
                 </div>
 
                 <div className="flex-spbt tooltip__section">
-                    <SignalCellularAltIcon />
+                    <CalendarTodayIcon />
 
                     <div>
                         <h3 className="tooltip__subtitle">Fecha de entrega</h3>

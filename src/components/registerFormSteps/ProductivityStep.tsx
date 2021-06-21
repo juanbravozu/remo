@@ -27,7 +27,7 @@ const ProductivityStep:FC<IProductivityStep> = ({ setStage, setRegisterInfo, set
     function handleNextStage() {
 
         if(currentProd === -1) {
-            setError('Please pick an option before continuing');
+            setError('Escoge una opción antes de continuar');
             return setOpenError(true);
         }
 

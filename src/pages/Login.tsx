@@ -66,7 +66,7 @@ const Login:FC = () => {
     return (
         <section className="log">
 
-            <div className="flex-center log__logo">
+            <div className="flex-center log__logo log__logo--login">
                 <img src={logo} alt="Remo"/>
             </div>            
 
