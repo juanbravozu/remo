@@ -18,3 +18,49 @@
         justify-content: space-between;
     }
 }
+
+.tooltip {
+    &__section {
+        padding: 1rem 2rem;
+        align-items: baseline;
+
+        > *:first-child {
+            margin-right: 20px;
+        }
+
+        > div:last-child {
+            width: 100%;
+        }
+
+        &:last-child {
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__square {
+        width: 23px;
+        height: 20px;
+        border-radius: 5px;
+    }
+
+    &__title, &__subtitle {
+        margin: 0;
+    }
+
+    &__subtitle {
+        position: relative;
+        bottom: 3px;
+        color: $interfaceDark;
+        font-size: 1.6rem;
+    }
+
+    &__text {
+        margin-left: 1.5rem;
+        color: $interfaceLight;
+    }
+
+    &__date {
+        color: $interfaceMed;
+        margin: 0;
+    }
+}

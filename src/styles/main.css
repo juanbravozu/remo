@@ -609,6 +609,52 @@ div .taskCreation__difficulty {
   }
 }
 
+.tooltip__section {
+  padding: 1rem 2rem;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.tooltip__section > *:first-child {
+  margin-right: 20px;
+}
+
+.tooltip__section > div:last-child {
+  width: 100%;
+}
+
+.tooltip__section:last-child {
+  margin-bottom: 2rem;
+}
+
+.tooltip__square {
+  width: 23px;
+  height: 20px;
+  border-radius: 5px;
+}
+
+.tooltip__title, .tooltip__subtitle {
+  margin: 0;
+}
+
+.tooltip__subtitle {
+  position: relative;
+  bottom: 3px;
+  color: #44223C;
+  font-size: 1.6rem;
+}
+
+.tooltip__text {
+  margin-left: 1.5rem;
+  color: #B4B1B2;
+}
+
+.tooltip__date {
+  color: #625059;
+  margin: 0;
+}
+
 .card {
   margin: 2rem 0;
   padding: 2rem;
@@ -884,7 +930,7 @@ span.MuiButton-label {
   border-radius: 8px;
 }
 
-.MuiPopover-root > .MuiPopover-paper > div:last-child div:nth-child(1), .MuiPopover-root > .MuiPopover-paper > div:last-child div:nth-child(2) {
+.MuiPopover-root > .MuiPopover-paper > div:last-child > div:nth-child(1), .MuiPopover-root > .MuiPopover-paper > div:last-child > div:nth-child(2) {
   display: none;
 }
 

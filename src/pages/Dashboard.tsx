@@ -188,7 +188,6 @@ const Dashboard:FC = () => {
                 <Paper elevation={0} className="card">
                     <header className="flex-spbt card__header">
                         <h2 className="card__title">Esta semana</h2>
-                        <Link to="/estadisticas" className="card__link">Ver más</Link>
                     </header>
 
                     <p className="card__body">Tareas por dificultad</p>

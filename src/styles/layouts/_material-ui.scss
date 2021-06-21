@@ -224,7 +224,7 @@ span.MuiButton-label {
 
 .MuiPopover-root > .MuiPopover-paper {
     > div:last-child  {
-        div:nth-child(1), div:nth-child(2) {
+        > div:nth-child(1), > div:nth-child(2) {
             display: none;
         }
     }

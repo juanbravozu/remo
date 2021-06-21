@@ -14,7 +14,6 @@ import { uuid } from 'uuidv4';
 import { useAuth } from "../contexts/AuthContext";
 import { db } from "../utils/firebase";
 import React from "react";
-import { assignTime } from "../utils/algorithm";
 
 interface ITaskCreationForm {
     open: boolean,
