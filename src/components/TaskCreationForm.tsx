@@ -6,6 +6,7 @@ import { Alert } from '@material-ui/lab';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import EditIcon from '@material-ui/icons/Edit';
 import SignalCellularAltIcon from '@material-ui/icons/SignalCellularAlt';
 import { KeyboardDatePicker, KeyboardTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
@@ -21,11 +22,12 @@ interface ITaskCreationForm {
     tasks: any,
     setTasks: (value:any) => void,
     userData: any,
+    setSuccess: (value:string) => void
 }
 
 enum Difficulty {Easy, Medium, Hard};
 
-const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen, tasks, setTasks, userData }) => {
+const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen, tasks, setTasks, userData, setSuccess }) => {
 
     const [ taskName, setTaskName ] = useState<string>('');
     const [ taskDifficulty, setTaskDifficulty ] = useState<number>(-1);
@@ -104,7 +106,7 @@ const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen, tasks, setTasks,
             resetValues();
             const copy = [...tasks, newTask];
             setTasks(copy);
-            console.log("Tarea creada")
+            setSuccess('Tarea creada con éxito');
             setOpen(false);
         });
     }
@@ -199,7 +201,7 @@ const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen, tasks, setTasks,
             resetValues();
             const copy = [...tasks, newTask];
             setTasks(copy);
-            console.log("Tarea creada")
+            setSuccess('Tarea creada con éxito');
             setOpen(false);
         });
     }
@@ -238,7 +240,7 @@ const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen, tasks, setTasks,
 
                     <MuiPickersUtilsProvider utils={DateFnsUtils} locale={es}>
                         <p className="textfield__label">Fecha límite</p>
-                        <KeyboardDatePicker keyboardIcon={<AccessTimeIcon/>} className="textfield textfield--time" value={deadline} onChange={handleDeadlineChange} format="dd/MM/yy"/>
+                        <KeyboardDatePicker keyboardIcon={<CalendarTodayIcon/>} className="textfield textfield--time" value={deadline} onChange={handleDeadlineChange} format="dd/MM/yy"/>
                     </MuiPickersUtilsProvider>
 
                     <div className="textfield__wrapper">
@@ -261,7 +263,7 @@ const TaskCreationForm:FC<ITaskCreationForm> = ({open, setOpen, tasks, setTasks,
                 {manual && <React.Fragment>
                     <MuiPickersUtilsProvider utils={DateFnsUtils} locale={es}>
                         <p style={{marginTop: 0}} className="textfield__label">Fecha asignada</p>
-                        <KeyboardDatePicker keyboardIcon={<AccessTimeIcon/>} className="textfield textfield--time" value={assignation} onChange={handleAssignTime} format="dd/MM/yy"/>
+                        <KeyboardDatePicker keyboardIcon={<CalendarTodayIcon/>} className="textfield textfield--time" value={assignation} onChange={handleAssignTime} format="dd/MM/yy"/>
 
                         <p style={{marginTop: 0}} className="textfield__label">Hora de asignación</p>
                         <KeyboardTimePicker keyboardIcon={<AccessTimeIcon/>} className="textfield textfield--time" value={assignation} onChange={handleAssignTime}/>

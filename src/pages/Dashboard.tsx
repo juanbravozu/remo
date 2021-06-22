@@ -4,11 +4,11 @@ import es from "date-fns/esm/locale/es";
 import { useHistory, Link } from "react-router-dom";
 import { db } from '../utils/firebase';
 import { useAuth } from '../contexts/AuthContext'
-import { Button, Drawer, Hidden, IconButton, Paper } from "@material-ui/core";
+import { Button, Drawer, Hidden, IconButton, Paper, Snackbar } from "@material-ui/core";
+import { Alert } from '@material-ui/lab';
 import { ExitToApp } from "@material-ui/icons";
 import MenuIcon from "@material-ui/icons/Menu";
 import AddIcon from '@material-ui/icons/Add';
-import InsertChartIcon from '@material-ui/icons/InsertChart';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import TaskCreationForm from "../components/TaskCreationForm";
 import { assignTime, unassignTasks } from "../utils/algorithm";
@@ -27,6 +27,7 @@ const Dashboard:FC = () => {
     const [ displayTasks, setDisplayTasks ] = useState<any[]>([]);
     const [ displayStats, setDisplayStats ] = useState<any[]>([{difficulty: "easy", value: 0, color: "#67C6DA"}, {difficulty: "medium", value: 0, color: "#8D6BD7"}, {difficulty: "hard", value: 0, color: "#FF777B"}]);
     const [ openTaskCreation, setOpenTaskCreation ] = useState<boolean>(false);
+    const [ success, setSuccess ] = useState<string>('');
     const [ viewName, setViewName ] = useState<string>("Day");
     const [ currentDate, setCurrentDate ] = useState(new Date());
     const { logout } = useAuth()!;
@@ -170,7 +171,7 @@ const Dashboard:FC = () => {
                 
                 <ScheduleView displayTasks={displayTasks} viewName={viewName} currentDate={currentDate} setCurrentDate={setCurrentDate} startHour={userData.workday ? userData.workday[0] : 5} endHour={userData.workday ? userData.workday[1] : 21}/>
 
-                <TaskCreationForm open={openTaskCreation} setOpen={setOpenTaskCreation} tasks={tasks} setTasks={updateRecommendation} userData={userData}/>
+                <TaskCreationForm open={openTaskCreation} setOpen={setOpenTaskCreation} tasks={tasks} setTasks={updateRecommendation} userData={userData} setSuccess={setSuccess}/>
             </div>
             
             <div className="dashboard__asideSection">
@@ -216,6 +217,12 @@ const Dashboard:FC = () => {
                     </div>
                 </Paper>
             </div>
+        
+            <Snackbar open={success ? true : false} autoHideDuration={5000} onClose={() => setSuccess('')}>
+                <Alert onClose={() => setSuccess('')} severity="success">
+                    {success}
+                </Alert>
+            </Snackbar>
         </main>
 
         <Hidden lgUp={true}>
