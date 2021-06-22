@@ -70,7 +70,7 @@ function filterAndSortTasks(tasks:Array<ITask>) {
 
 function iterateProd(prodArray:Array<any>, task:ITask, user:any, tasks:Array<ITask>) {
 
-    for(let day = new Date(); day <= new Date(task.deadline.seconds*1000); day.setDate(day.getDate() + 1)) {
+    for(let day = new Date(); day.getDate() <= new Date(task.deadline.seconds*1000).getDate(); day.setDate(day.getDate() + 1)) {
 
         let minHour = null;
         if(day.getDate() === new Date().getDate()) minHour = new Date().getHours();
